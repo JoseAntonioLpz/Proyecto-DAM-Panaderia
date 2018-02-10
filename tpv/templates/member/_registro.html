@@ -1,0 +1,14 @@
+<section>
+    <form id="form" action="index.php?accion=doInsertUser&ruta=member" method="post">
+        <input id="login" type="text" name="login" placeholder = "Nombre usuario"/>
+        <input id="clave" type="password" name="clave" placeholder = "Clave"/>
+        <input id="claveRep" type="password" name="claveRep" placeholder = "Clave Repetida"/>
+        <input type="submit" value="Registrar"/>
+    </form>
+    <div id="error"></div>
+    <a href="index.php?accion=listmember&ruta=member">Volver</a>
+</section>   
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/member/insertMember.js"></script>
+</body>
+</html>

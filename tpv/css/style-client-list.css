@@ -1,0 +1,163 @@
+/*@import url('font-awesome/css/font-awesome.min.css');*/
+body{
+    margin:0;
+}
+
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  /*height:300px;*/
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+  padding: 20px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: center;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+.fondo{
+  background: -webkit-linear-gradient(left, #CD5C5C, #E9967A);
+  background: linear-gradient(to right, #CD5C5C, #E9967A);
+  /*background-image: url(../img/background1.jpg);
+  background-size: cover;
+  background-position: center;*/
+  /*: linear-gradient(left, rgba(243,207,200,1) 0%, rgba(193,116,103,1) 0%, rgba(183,93,78,1) 36%, rgba(233,188,180,1) 100%);*/
+  font-family: 'Roboto', sans-serif;
+}
+
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+
+/*----------------botones----------------------*/
+
+.actions{
+    display: flex;
+    justify-content: center;
+}
+
+.bt-action{
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.edit{
+    background-color: #59d;
+}
+
+.remove{
+    background-color: #d33;
+}
+
+.confirm{
+   background-color: #01DF01; 
+}
+
+/*----------------------paginacion----------------------*/
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #CD5C5C;
+    color: white;
+    border-radius: 5px;
+    box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+
+
+
+/*------------verntana modal----------------*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Difumina la página cuando se queda detrás del modal */
+/* Hay que encerrar todo el código en un <div> con esta clase, desde <body> hasta el inicio de los modales. */
+.blur {
+    filter: blur(0px);
+    transition: ease-in-out filter .2s;
+}
+
+/* Ventana del modal */
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+/*******************************************************/
+
+.order{
+    cursor: pointer;
+}
+
+.order:hover{
+    color: #bfc9ca;
+}
+
+.orderSelect::after{
+    content:' \f0d7';
+    font-family:FontAwesome;
+}

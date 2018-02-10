@@ -1,0 +1,295 @@
+.block{
+    width: 80%;
+    background-image: url(../img/background1.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow: auto;
+    padding: 20px;
+}
+
+.block h1{
+    color: white;
+}
+
+.block a{
+    color: white;
+    padding: 5px;
+    
+}
+
+/* Caja del modal, se eleva sobre el resto de la página y se centra. */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Difumina la página cuando se queda detrás del modal */
+
+/* Hay que encerrar todo el código en un <div> con esta clase, desde <body> hasta el inicio de los modales. */
+
+.blur {
+    filter: blur(0px);
+    transition: ease-in-out filter .2s;
+}
+
+/* Ventana del modal */
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+/* Boton de cerrar */
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contBox .pagBefore, .contBox .pagAfter{
+    height: 40px;
+    flex: 1;
+    background: rgba(255, 255, 255, .8);
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Queda bastante feo cuando una de las filas es de elementos impares
+y todo se estira y desfigura. Hay que procurar que las filas siempre tengan 
+un número par de elementos.*/
+
+#productBox {
+    flex: 20;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evently;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.pbox {
+    flex: 1 0 300px;
+    border: 2px solid #eee;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, .8);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evently;
+}
+
+.pbox .pbuttons {
+    flex: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.pbox .pbuttons button {
+    flex: 1;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Animación de cuenta atrás para borrar el producto. */
+
+.pbox .pbuttons button.deleting {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.pbox .pbuttons button.deleting:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000;
+    background: #f03434;
+    animation: waitDelete 3s linear alternate-reverse;
+    animation-timing-function: ease-in;
+}
+
+@keyframes waitDelete {
+    from {
+        left: 0%;
+        right: auto;
+        width: 0%;
+    }
+    to {
+        left: 0%;
+        right: auto;
+        width: 100%;
+    }
+}
+
+/* Fin de la animación */
+
+.pbox .pimg {
+    flex: 1 0 100px;
+    height: 150px;
+    background: lightgrey;
+    border-radius: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.pbox .pdetails {
+    flex: 1 0 100px;
+    margin: 10px 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.pbox .pdetails h3 {
+    margin: 0;
+    flex: 100%;
+    text-transform: capitalize;
+}
+
+.pbox .pdetails .pfamily {
+    flex: 1;
+    text-align: center;
+    font-size: .8em;
+    text-transform: uppercase;
+    /*border: 2px solid #f03434;*/
+    font-weight: bolder;
+    color: white;
+    background-color: #f03434;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.pbox .pdetails .pprice {
+    margin: 0;
+    flex: 1;
+    text-align: right;
+}
+
+.pbox .pdetails .pprice:after {
+    content: "€";
+}
+
+.pbox .pdetails p:last-child {
+    flex: 100%;
+    margin: 0;
+}
+
+.loadbox {
+    height: 80px;
+    width: 80px;
+    margin: 0 auto;
+    transform: scaleY(-1);
+    filter: FlipV;
+    display: flex;
+}
+
+.loading {
+    margin: 0px 5px 0px;
+    background: linear-gradient(#ff6c79, #ffb735);
+    width: 5px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.loading:nth-child(1){animation: loading-three 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+.loading:nth-child(2){animation: loading-two 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+.loading:nth-child(3){animation: loading-one 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+
+@keyframes loading-one {
+    from {height: 30px;}
+    20% {height: 10px;}
+    40% {height: 40px;}
+    80% {height: 10px;}
+    to {height: 70px;}
+}
+@keyframes loading-two {
+    from {height: 40px;}
+    20% {height: 20px;}
+    40% {height: 60px;}
+    80% {height: 20px;}
+    to {height: 80px;}
+}
+
+@keyframes loading-three {
+    from {height: 20px;}
+    20% {height: 5px;}
+    40% {height: 40px;}
+    80% {height: 5px;}
+    to {height: 60px;}
+}
+/*********************************************/
+
+.modal .columns{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.modal form{
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 10px;
+}
+
+.modal form input,
+.modal form textarea {
+    padding: 5px;
+}
+
+.modal form textarea{
+    resize: none;
+    flex: 1;
+}
+
+.modal form img{
+    height: 300px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.error{
+    color: #f03434;
+}

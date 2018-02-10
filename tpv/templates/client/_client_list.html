@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="css/style-client-list.css">
+<section>
+  <div class="fondo">
+    {{mensaje}}
+    {{pruebas}}
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+            <th id="col1">Name</th>
+            <th id="col2">CIF/NIF</th>
+            <th id="col3">Address</th>
+            <th id="col4">City</th>
+            <th id="col5">Province</th>
+            <th id="col6">Action</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        {{client-list}}
+      </tbody>
+    </table>
+  </div>
+    
+    <nav role="navigation">
+        <div class="pagination">
+            {{prev}}
+            {{pagination}}
+            {{next}}
+        </div>
+    </nav>
+    <a href="?accion=insert_client_template&ruta=client">Insert new Client</a>
+</div>
+    </div>
+    </div>
+    <!-- El modal, en este caso con el id para el formulario de edición. -->
+    <!-- Permanecerá en display: none; hasta que se active por jQuery. -->
+    <div id="modalEdit" class="modal">
+        <!-- Contenido -->
+        <div class="modal-content">
+            
+        </div>
+    </div>
+    
+ </section>   
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/client/client.js"></script>
+    <!--<script type="text/javascript" src="js/client/clientTableEdit.js"></script>-->
+</body>
+</html>

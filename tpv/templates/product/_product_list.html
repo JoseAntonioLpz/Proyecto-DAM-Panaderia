@@ -1,0 +1,54 @@
+<link rel="stylesheet" type="text/css" href="css/product_styles.css" />
+<div class="block">
+    <a href="?ruta=product&accion=insertProducts" class="btn">Añadir productos</a>
+    <h1>Lista de productos:</h1>
+    <div class="contBox">
+        <div id="pagBefore" class="pagBefore"><<</div>
+        <div id="productBox">
+            <div class="loadbox">
+                <div class="loading"></div>
+                <div class="loading"></div>
+                <div class="loading"></div>
+            </div>
+        </div>
+        <div id="pagAfter" class="pagAfter">>></div>
+    </div>
+    
+</div>
+</div>
+</div>
+<!--The Modal -->
+<div id="modalEdit" class="modal">
+    <!--Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="columns">
+        <form method="POST" enctype="multipart/form-data" >
+            <input type="hidden" id="id" name="id" />
+            <img id="preview">
+            <p class="info"></p>
+            <input type="file" id="image" name="image" />
+            <input type="button" class="medium bold" id="editImage" value="Cambiar imagen" />
+        </form>
+        <form method="POST">
+            <h3>Revisa los datos antes de guardarlos.</h3>
+            <input type="hidden" id="id" name="id" />
+            <select id="family" class="medium">
+                {{singleFamilyProduct}}
+            </select>
+            <input type="text" class="medium" id="product" name="product" value="" />
+            <input type="text" class="medium" id="price" name="price" value="" />
+            <textarea id="description" name="description" value=""></textarea>
+            <input type="button" class="medium bold" id="editProduct" value="Guardar" />
+        </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/block.js"></script>
+<script type="text/javascript" src="js/product/product.js"></script>
+</body>
+
+</html>

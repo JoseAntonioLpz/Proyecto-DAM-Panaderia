@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="css/product_styles.css" />
+<div class="block">
+    <h1>Productos nuevos</h1>
+    <form id="newProducts" method="POST" action="?ruta=product&accion=doInsertProducts" enctype="multipart/form-data">
+        <input type="file" name="img[]" />
+        <select id="family_1" name="idfamily[]">
+            <!--{{familiesHtmlOptions}}-->
+            {{singleFamilyProduct}}
+        </select>
+        <input type="text" id="product_1" name="product[]" value="" />
+        <input type="text" id="price_1" name="price[]" value="" />
+        <textarea id="description_1" name="description[]" value=""></textarea>
+        <hr>
+        <button type="button" id="oneMoreProduct">Añadir otro</button>
+        <input type="submit" value="Guardar" />
+    </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/block.js"></script>
+    <script type="text/javascript" src="js/product/product.js"></script>
+</body>
+
+</html>

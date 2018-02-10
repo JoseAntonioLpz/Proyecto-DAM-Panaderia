@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="css/style-client-list.css">
+<section>
+    <div class="fondo">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="order orderSelect" data-order="t.date">Date</th>
+                    <th class="order" data-order="m.member">Miembro</th>
+                    <th class="order" data-order="c.id">ID_Cliente</th>
+                    <th class="order" data-order="c.name">Nombre</th>
+                    <th class="order" data-order="c.surname">Apellidos</th>
+                    <th>DNI</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        <div class="tbl-content">
+            <table id="list_ticket" cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                {{client-list}}
+              </tbody>
+            </table>
+        </div>
+        <input type="hidden" id="order" value="t.date"/>
+        <nav role="pagination"><div class="pagination" id="paginacion" data-page="1"></div></nav>
+        <a href="#" id="clean">Limpiar tickets</a>
+    </div>
+    </div>
+    </div>
+</section>    
+    <div id="modalEdit" class="modal">
+        <!-- Contenido -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <table id="details_table" border="1">
+                <tr>
+                    <td>Id</td> 	
+                    <td>Price</td> 	
+                    <td>Quantity</td> 	
+                    <td>Product</td>
+                    <td>Borrar</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/ticket/obtainTickets.js"></script>
+</body>
+</html>

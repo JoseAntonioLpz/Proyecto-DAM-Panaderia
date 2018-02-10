@@ -1,0 +1,122 @@
+@import url("vendor/bootstrap/css/bootstrap.min.css");
+@import url("vendor/font-awesome/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Barlow:300,400,600,700,900');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+/* font-family: 'Barlow', sans-serif; */
+/* font-family: 'Fredericka the Great', cursive; */
+
+.post-thumbnail{
+    width: 30%;
+}
+
+.post-thumbnail img{
+    width: 100%;
+}
+
+html,body{
+    margin: 0;
+    height: 100%;
+}
+.header-front{
+    height: 100%;
+    background-image: url(img/fondo-2.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    flex: 1 0 150px;
+}
+
+.navigation .logo{
+    width: 190px;
+    margin: 15px;
+}
+
+.navigation .navigation-list{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.navigation .navigation-list .nav-item{
+    display: inline-block;
+}
+
+.navigation .navigation-list .nav-item .nav-link{
+    font-size: 1.5em;
+    color: #eceadc;
+}
+.navigation .navigation-list .nav-item .nav-link:hover{
+    color: #fec764;
+}
+
+.header-front .lema{
+    flex: 1 0 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-front .lema .frase{
+    color: #FFF;
+    font-size: 3em;
+    margin-top: -150px;
+    font-family: 'Fredericka the Great', cursive;
+}
+
+::selection {
+    background: #eceadc;
+}
+
+.SCpanaderos{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.containerPro{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.postPopularFront{
+    flex:1;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding-left:5%;
+    padding-right:5%;
+    margin:10px;
+}
+
+.img-custom{
+    width: 100%;
+    height:200px;
+    object-fit: cover;
+}
+
+.actionPost{
+    width:100%;
+    height:50px;
+    display:flex;
+}
+
+.actionPost > a{
+    flex:1;
+}
+
+.actionPost > div{
+    flex:1;
+}

@@ -1,0 +1,100 @@
+            <section>
+                <div class="cuenta">
+                   <div class="divHeader">
+                       <p class="big thin"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                        TPV</p>
+                   </div>
+                   <div class="divBody">
+                       <table id="tablaTicket">
+                           <tr class="redColor">
+                               <td>Cant.</td>
+                               <td>Cod.</td>
+                               <td>Descripcion</td>
+                               <td>PVP/U</td>
+                               <td>Subtotal</td>
+                               <td>Accion</td>
+                           </tr>
+                    
+                       </table>
+                   </div>
+                   <div class="divFooter">
+                       <div class="changeCat bold" id="save-ticket">
+                           Guardar ticket
+                       </div>
+                       <div class="changeCat bold" id="point_ticket">
+                           Apuntar ticket
+                       </div>
+                       <div id="nuevoTicket" class="changeCat bold">
+                           Nuevo ticket
+                       </div>
+                       <div class="changeCat bold">
+                           Facturar
+                       </div>
+                   </div>
+                </div>
+                <div class="productos">
+                    <div class="divHeader">
+                        <!-- Resultado de la compra -->
+                       <p id="totalResult" class="big bold right">00.00€</p>
+                   </div>
+                   <div class="searchProduct">
+                       <input class="bold medium" type="text" name="search" placeholder="Buscar productos..."/>
+                       <input class="bold medium" type="button" value="Buscar" id="searchProductBtn"/>
+                   </div>
+                   <div class="divBodyPro" id="productBox">
+                       <!-- Imprimir productos aquí -->
+                        <div class="loadbox">
+                            <div class="loading"></div>
+                            <div class="loading"></div>
+                            <div class="loading"></div>
+                        </div>
+                   </div>
+                   <div class="divFooter" id="familias">
+                       <!-- Imprimir categorías -->
+                       <div class="changeCat bold"><a data-id="0">Todos</a></div>
+                       <!--<div>-->
+                       <!--    <a href="#">Pan</a>-->
+                       <!--</div>-->
+                       <!--<div>-->
+                       <!--    <a href="#">Bolleria</a>-->
+                       <!--</div>-->
+                       <!--<div>-->
+                       <!--    <a href="#">Croisanteria</a>-->
+                       <!--</div>-->
+                       <!--<div>-->
+                       <!--    <a href="#">Navidad</a>-->
+                       <!--</div>-->
+                       <!--<div>-->
+                       <!--    <a href="#">Otros</a>-->
+                       <!--</div>-->
+                   </div>
+                </div>
+                <!--<input id="id_member" type="hidden" value="{{id_member}}"/>-->
+                <input id="id_ticket" type="hidden" value=""/>
+            </section> 
+        </div>
+    </div>
+    
+    <!--Ventana modal-->
+        <!-- El modal, en este caso con el id para el formulario de edición. -->
+        <!-- Permanecerá en display: none; hasta que se active por jQuery. -->
+        <div id="modalEdit" class="modal">
+            <!-- Contenido -->
+            <div class="modal-content">
+                <div class="close"><i class="fa fa-times"></i></div>
+            </div>
+        </div>
+    <!--ventana modal-->
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- He copiado el contenido de family.js a product_tpv.js para usar el manejador en la consulta. -->
+    <!--<script type="text/javascript" src="js/family/family.js"></script>-->
+    <script type="text/javascript" src="js/client/clientAjax.js"></script>
+    <script type="text/javascript" src="js/ticket/ticketAjax.js"></script>
+    <script type="text/javascript" src="js/block.js"></script>
+    <script type="text/javascript" src="js/product/product_tpv.js"></script>
+    <script type="text/javascript" src="js/ticket/ticketdetail.js"></script>
+    <script type="text/javascript" src="js/product/carrito.js"></script>
+</body>
+</html>
+

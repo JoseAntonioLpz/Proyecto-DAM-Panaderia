@@ -1,0 +1,36 @@
+<section>
+    <div>
+    <form id="form-client" method="post" action=".">
+        <div class="fields">
+            <input class="name-client" type="text" placeholder="Name*" name="name[]" required>
+            <span class="error"></span>
+            <input class="surname-client" type="text" placeholder="Surname*" name="surname[]" required>
+            <span class="error"></span>
+            <input class="tin-client" type="text" placeholder="CIF/NIF*" name="tin[]" required>
+            <span class="error"></span>
+            <input class="address-client" type="text" placeholder="Address*" name="address[]" required>
+            <span class="error"></span>
+            <input class="location-client" type="text" placeholder="Location" name="location[]">
+            <span class="error"></span>
+            <input class="postalcode-client" type="number" placeholder="Postal Code" name="postalcode[]">
+            <span class="error"></span>
+            <input class="province-client" type="text" placeholder="Province" name="province[]">
+            <span class="error"></span>
+            <input class="email-client" type="email" placeholder="E-mail" name="email[]">
+            <span class="error"></span>
+            <!--Ruta y acción-->
+            <input type="hidden" name="ruta" value="client">
+            <!--<input type="hidden" name="accion" value="insert_client">-->
+            <input type="hidden" name="accion" value="insert_various_clients">
+        </div>
+        <input id="insert_client_submit" type="submit" value="Insert">
+    </form>
+    
+    <button id="add_more">Add one more</button>
+    <a href="?ruta=client">Cancel</a>
+    </div>
+  </section>  
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/client/client.js"></script>
+</body>
+</html>

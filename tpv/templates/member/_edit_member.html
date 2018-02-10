@@ -1,0 +1,14 @@
+<section>
+    <form id="form" action="index.php?accion=doEditUser&ruta=member" method="post">
+        <input id="login" type="text" name="login" value = "{{login}}"/>
+        <input id="clave" type="password" name="clave" placeholder = "Clave"/>
+        <input id="claveRep" type="password" name="claveRep" placeholder = "Clave Repetida"/>
+        <input type="hidden" name="id" value="{{id}}"/>
+        <input type="submit" value="Registrar"/>
+    </form>
+    <a href="index.php?accion=listmember&ruta=member">Volver</a>
+</section>    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/member/editMember.js"></script>
+</body>
+</html>

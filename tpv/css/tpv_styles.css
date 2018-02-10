@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+tr,
+div,
+input,
+textarea,
+select{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.bolder {
+    font-weight: 700;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.small-caps {
+    font-variation: small-caps;
+}
+
+.big {
+    font-size: 2em;
+}
+
+.medium {
+    font-size: 1em;
+}
+
+.small {
+    font-size: .6em;
+}
+
+.right {
+    text-align: right;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 10%;
+    background-color: #f6f0ee;
+    display: flex;
+}
+
+header>a {
+    color: #355e85;
+    text-decoration: none;
+    flex: 1;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+header>a:hover {
+    color: #f03434;
+}
+
+.cuerpo {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 100%;
+}
+
+/* Aside */
+
+aside {
+    flex: 1 0 15%;
+    background-color: #afa5a0;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    flex: 1 0 20%;
+}
+
+aside>nav {
+    flex: 1 0 80%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 100px;
+}
+
+aside>nav>a {
+    text-decoration: none;
+    color: #474747;
+    font-size: 1.5em;
+    border-bottom: 1px solid white;
+    padding-bottom: 10%;
+}
+
+aside>nav>a:hover {
+    background-color: #e5e5e5;
+}
+
+/* Section */
+
+section {
+    flex: 1 0 85%;
+    background-color: #8e5b47;
+    display: flex;
+}
+
+section>div {
+    flex: 1 0 32.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cuenta {
+    padding: 5% 2.5% 5% 5%;
+}
+
+.productos {
+    padding: 5% 5% 5% 2.5%;
+}
+
+.divHeader {
+    flex: 1 0 10%;
+    color: white;
+}
+
+.divHeader>p {
+    /* Tamaños arriba del todo. */
+    /*font-size: 1.8em;*/
+}
+
+.divBody {
+    flex: 1 0 80%;
+    background-color: white;
+    overflow: auto;
+}
+
+#tablaTicket tbody tr:first-child {
+    /*Permitir que las cabezas de la tabla se vean durante el scroll*/
+    /* Position fixed y una fila vacía debajo. */
+}
+
+.divBodyPro {
+    /* Lo he cambiado de 80% a 75% para que quepa la barra de busqueda de productos. */
+    flex: 1 0 75%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow: auto;
+}
+
+.divBodyPro .pbox {
+    flex: 1 0 150px;
+    border: 2px solid white;
+    height: 150px;
+    background-color: white;
+    background-image: url(../img/nophoto.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 30%;
+    cursor: pointer;
+}
+
+.divBodyPro>div>.pimg {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.divBodyPro>div>.pimg>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    transition: .2s opacity, box-shadow ease-in-out;
+}
+
+.divBodyPro>div>.pimg>div>h3 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em;
+    color: #222;
+    text-transform: capitalize;
+    opacity: 0;
+    transition: .2s opacity, font-size ease-in-out;
+}
+
+.divBodyPro>div>.pimg>div:hover>h3,
+.divBodyPro>div>.pimg>div:hover {
+    opacity: .8;
+}
+
+.divBody>table {
+    width: 100%;
+}
+
+.divFooter {
+    flex: 1 0 10%;
+    display: flex;
+    background-color: white;
+}
+
+.divFooter>div {
+    flex: 1;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.redColor>td {
+    color: red;
+}
+
+.divFooter .changeCat {
+    color: white;
+    opacity: .8;
+    margin: 5px;
+    transition: ease-in-out opacity, filter .2s;
+}
+
+.divFooter .changeCat:hover {
+    opacity: 1;
+}
+
+.divFooter .changeCat:active {
+    filter: brightness(50%);
+}
+
+.divFooter .changeCat:nth-child(1) {
+    background: #222;
+}
+
+.divFooter .changeCat:nth-child(2) {
+    background: #1e90ff;
+}
+
+.divFooter .changeCat:nth-child(3) {
+    background: #2ed573;
+}
+
+.divFooter .changeCat:nth-child(4) {
+    background: #5352ed;
+}
+
+.divFooter .changeCat:nth-child(5) {
+    background: #ffa502;
+}
+
+.divFooter .changeCat:nth-child(6) {
+    background: #ff4757;
+}
+
+
+/* Animación a la cesta. */
+
+.divBodyPro>div>.pimg>div:active h3 {
+    font-size: 1.3em;
+}
+
+.divBodyPro>div>.pimg>div:active {
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+
+.loadbox {
+    height: 80px;
+    width: 80px;
+    margin: 0 auto;
+    transform: scaleY(-1);
+    filter: FlipV;
+    display: flex;
+}
+
+.loading {
+    margin: 0px 5px 0px;
+    background: linear-gradient(#ff6c79, #ffb735);
+    width: 5px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.loading:nth-child(1){animation: loading-three 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+.loading:nth-child(2){animation: loading-two 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+.loading:nth-child(3){animation: loading-one 1s infinite alternate-reverse;animation-timing-function: cubic-bezier(.4,1.22,.66,-0.24);}
+
+@keyframes loading-one {
+    from {height: 30px;}
+    20% {height: 10px;}
+    40% {height: 40px;}
+    80% {height: 10px;}
+    to {height: 70px;}
+}
+@keyframes loading-two {
+    from {height: 40px;}
+    20% {height: 20px;}
+    40% {height: 60px;}
+    80% {height: 20px;}
+    to {height: 80px;}
+}
+
+@keyframes loading-three {
+    from {height: 20px;}
+    20% {height: 5px;}
+    40% {height: 40px;}
+    80% {height: 5px;}
+    to {height: 60px;}
+}
+
+
+.searchProduct{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: lightblue;
+}
+
+.searchProduct input[name='search']{
+    flex: 1;
+    padding: 5px;
+    border: 2px solid white;
+}
+
+.searchProduct input[type='button']{
+    padding: 5px;
+    background-color: #f03434;
+    border-radius: 2px;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.searchProduct input[type='button']:active{
+    color: #ddd;
+}
+
+
+
+/*más,menos y borrar de la tabla*/
+
+.plus,.minus,.rmRow{
+    cursor:pointer;
+    padding:5px;
+}
+
+/* Efecto hover para dar pista de que puede ver la descripción completa. */
+.ticket-detail .nameproduct{
+    cursor: help;
+}
+
+/* Caja del modal, se eleva sobre el resto de la página y se centra. */
+#modalBlock.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Ventana del modal de bloqueo de pantalla*/
+#modalBlock .modal-content {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+}
+
+#modalBlock .modal-content span{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#modalBlock .modal-content span h3{
+    flex: 100%;
+    color: white;
+}
+
+#modalBlock .modal-content span input{
+    flex: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+/**********************************************************/
+
+#loadmore {
+    flex: 100%;
+    text-align: center;
+    background-color: white;
+    color: #f03434;
+    padding: 5px;
+    cursor: pointer;
+    transition: .2s background-color, color ease-in-out;
+}
+
+#loadmore:hover {
+    color: white;
+    background-color: #222;
+}
+
+.errorShake{
+    animation: shakeit .2s linear normal;
+}
+
+@keyframes shakeit{
+    from{
+        transform: translateX(-30px);
+    }
+    25%{
+        transform: translateX(30px);
+    }
+    50%{
+        transform: translateX(-30px);
+        color: white;
+        background-color: #f03434;
+    }
+    75%{
+        transform: translateX(30px);
+    }
+    to{
+        transform: translateX(-30px);
+    }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/tpv_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/tpv_modal.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <title>TPV</title>
+</head>
+<body>
+    <!--Modal para la función de bloqueo. -->
+<div id="modalBlock" class="modal">
+    <!--Modal content -->
+    <div class="modal-content">
+        <span>
+            <h3>Introduce la contraseña:</h3>
+            <input type="password" class="medium" id="passblock"/>
+            <input type="button" class="medium bold" id="unblock" value="Desbloquear" />
+        </span>
+    </div>
+</div>
+
+    <div class="container blur">
+        <header>
+            <a href="#">Edit Profile</a>
+            <a href="#" id="blockscreen">Block</a>
+            <a href="?accion=dologout&ruta=member">Logout</a>
+        </header>
+        <div class="cuerpo">
+            <aside>
+                <div class="logo"></div>
+                <nav>
+                    <a href="index.php">Dashboard</a>
+                    <a href="?ruta=tpv">TPV</a>
+                    <a href="?accion=listmember&ruta=member">Miembros</a>
+                    <a href="?accion=index&ruta=client">Clientes</a>
+                    <a href="?accion=index&ruta=product">Productos</a>
+                    <a href="?accion=ticketTemplate&ruta=ticket">Facturas</a>
+                </nav>
+            </aside>
