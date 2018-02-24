@@ -31,10 +31,12 @@ class DataBase {
         }
         $r = $this->sentencia->execute();
         /*
+        if(!$r){
         echo $sql . '<br>';
         echo Util::varDump($params);
         echo Util::varDump($this->sentencia->errorInfo());
         echo Util::varDump($this->sentencia);
+        }
         //*/
         return $r;
     }

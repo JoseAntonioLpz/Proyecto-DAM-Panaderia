@@ -1,3 +1,4 @@
+/*Este archivo no sirve porque no lo uso en ningún sitio*/
 $(document).ready(function(){
     $('.btedit').on('click',hacerEditable);
     

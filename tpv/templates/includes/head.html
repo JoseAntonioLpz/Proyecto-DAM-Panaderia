@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="{{base}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/tpv_styles.css">
@@ -15,28 +16,28 @@
     <!--Modal content -->
     <div class="modal-content">
         <span>
-            <h3>Introduce la contraseña:</h3>
-            <input type="password" class="medium" id="passblock"/>
-            <input type="button" class="medium bold" id="unblock" value="Desbloquear" />
+            <h3>Input your password:</h3>
+            <input type="password" class="medium" id="passblock" autofocus/>
+            <input type="button" class="medium bold" id="unblock" value="Unblock" />
         </span>
     </div>
 </div>
 
     <div class="container blur">
         <header>
-            <a href="#">Edit Profile</a>
-            <a href="#" id="blockscreen">Block</a>
-            <a href="?accion=dologout&ruta=member">Logout</a>
+            <a><i class="fa fa-edit" aria-hidden="true"></i>  Edit Profile</a>
+            <a id="blockscreen"><i class="fa fa-lock" aria-hidden="true"></i>  Block</a>
+            <a href="member/dologout"> <i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a>
         </header>
         <div class="cuerpo">
             <aside>
                 <div class="logo"></div>
                 <nav>
                     <a href="index.php">Dashboard</a>
-                    <a href="?ruta=tpv">TPV</a>
-                    <a href="?accion=listmember&ruta=member">Miembros</a>
-                    <a href="?accion=index&ruta=client">Clientes</a>
-                    <a href="?accion=index&ruta=product">Productos</a>
-                    <a href="?accion=ticketTemplate&ruta=ticket">Facturas</a>
+                    <a href="tpv">TPV</a>
+                    <a href="member/listmember">Members</a>
+                    <a href="client/index">Clients</a>
+                    <a href="product/index">Products</a>
+                    <a href="ticket/ticketTemplate">Tickets</a>
                 </nav>
             </aside>

@@ -3428,7 +3428,7 @@ msgstr "Número de widgets encontrados: %d"
 msgid "%1$s could not be created: %2$s"
 msgstr "%1$s no se pudo crear: %2$s"
 
-#: wp-includes/class-wp-customize-nav-menus.php:897
+
 msgid "Post"
 msgstr "Entrada"
 
@@ -6393,8 +6393,8 @@ msgstr "Estás personalizando %s"
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
 msgstr "<strong>ERROR</strong>: El comentario no se pudo guardar. Por favor, inténtalo de nuevo más tarde."
 
-#: wp-includes/update.php:154 wp-includes/update.php:356
-#: wp-includes/update.php:538
+#: wp-includes/update.php:154 wp-includes/update.php:346
+#: wp-includes/update.php:528
 msgid "(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)"
 msgstr "(WordPress no pudo establecer una conexión segura con WordPress.org. Por favor, contacta con el administrador de tu servidor.)"
 
@@ -7243,7 +7243,7 @@ msgid "https://wordpress.org/support/forum/requests-and-feedback"
 msgstr "https://es.wordpress.org/support/forum/comunidad/peticiones-y-feedback/"
 
 #: wp-includes/admin-bar.php:164 wp-includes/update.php:153
-#: wp-includes/update.php:355 wp-includes/update.php:537
+#: wp-includes/update.php:345 wp-includes/update.php:527
 #: wp-includes/wp-db.php:1062 wp-includes/wp-db.php:1595
 #: wp-includes/wp-db.php:1753 wp-login.php:882
 msgid "https://wordpress.org/support/"
@@ -7355,8 +7355,8 @@ msgid "on"
 msgstr "on"
 
 #. translators: %s: support forums URL
-#: wp-includes/update.php:152 wp-includes/update.php:354
-#: wp-includes/update.php:536
+#: wp-includes/update.php:152 wp-includes/update.php:344
+#: wp-includes/update.php:526
 msgid "An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href=\"%s\">support forums</a>."
 msgstr "Sucedió un error inesperado. Puede que algo vaya mal con WordPress.org o la configuración de este servidor. Si sigues teniendo problemas, por favor prueba en los <a href=\"%s\">foros de soporte</a>."
 
@@ -7391,7 +7391,7 @@ msgstr "Por defecto"
 msgid "Menu"
 msgstr "Menú"
 
-#: wp-includes/update.php:643
+#: wp-includes/update.php:633
 msgid "Translation Updates"
 msgstr "Actualizaciones de traducción"
 
@@ -9442,21 +9442,21 @@ msgid "This is the short link."
 msgstr "Este es el enlace corto."
 
 #. translators: 1: Number of updates available to plugins
-#: wp-includes/update.php:636
+#: wp-includes/update.php:626
 msgid "%d Plugin Update"
 msgid_plural "%d Plugin Updates"
 msgstr[0] "%d actualización de plugin"
 msgstr[1] "%d actualizaciones de plugins"
 
 #. translators: 1: Number of updates available to themes
-#: wp-includes/update.php:640
+#: wp-includes/update.php:630
 msgid "%d Theme Update"
 msgid_plural "%d Theme Updates"
 msgstr[0] "%d actualización de tema"
 msgstr[1] "%d actualizaciones de temas"
 
 #. translators: 1: Number of updates available to WordPress
-#: wp-includes/update.php:632
+#: wp-includes/update.php:622
 msgid "%d WordPress Update"
 msgstr "%d actualización de WordPress"
 
@@ -12134,3 +12134,347 @@ msgstr "Clave de activación:"
 #: wp-activate.php:78
 msgid "Activation Key Required"
 msgstr "Requiere clave de activación"
+
+#: wp-signup.php:182
+msgid "Let`s go home!"
+msgstr "¡Volvamos al home!"
+
+#: wp-signup.php:182
+msgid "Ooops! Error 404: Page Not found!"
+msgstr "Ooops! Error 404: ¡Página no encontrada!"
+
+#: wp-signup.php:182
+msgid "We need more content, this is a small dog's shit"
+msgstr "Necesitamos mas contenido, esto es una pequeña mierda de perro"
+
+#: wp-signup.php:182
+msgid "Post title"
+msgstr "Titulo de la entrada"
+
+#: wp-signup.php:182
+msgid "Published on"
+msgstr "Publicado en"
+
+#: wp-signup.php:182
+msgid "Especials"
+msgstr "Especiales"
+
+#: wp-signup.php:182
+msgid "Last Entries"
+msgstr "Ultimas entradas"
+
+#: wp-signup.php:182
+msgid "Most active authors"
+msgstr "Autores mas activos"
+
+#: wp-signup.php:182
+msgid "By day"
+msgstr "Por día"
+
+#: wp-signup.php:182
+msgid "By month"
+msgstr "Por mes"
+
+#: wp-signup.php:182
+msgid "By year"
+msgstr "Por año"
+
+#: wp-signup.php:182
+msgid "Popular post"
+msgstr "Entradas populares"
+
+#: wp-signup.php:182
+msgid "The most commented"
+msgstr "Lo mas comentado"
+
+#: wp-signup.php:182
+msgid "Bio"
+msgstr "Biografía"
+
+#: wp-signup.php:182
+msgid "Contact"
+msgstr "Contacto"
+
+#: wp-signup.php:182
+msgid "Skills"
+msgstr "Habilidades"
+
+#: wp-signup.php:182
+msgid "When we open?"
+msgstr "¿Cuando abrimos?"
+
+#: wp-signup.php:182
+msgid "Last Posts"
+msgstr "Ultimas entradas"
+
+#: wp-signup.php:182
+msgid "We open from Monday to Saturday from 9:00 to 14:00 and from 17:00 to 21:00"
+msgstr "Abrimos de lunes a sabado de 9:00 a 14:00 y de 17:00 a 21:00"
+
+#: wp-signup.php:182
+msgid "How to contact us?"
+msgstr "¿Como contactar con nosotros?"
+
+#: wp-signup.php:182
+msgid "Phone"
+msgstr "Telefono"
+
+#: wp-signup.php:182
+msgid "Fax"
+msgstr "Fax"
+
+#: wp-signup.php:182
+msgid "Where we are?"
+msgstr "¿Dónde estamos?"
+
+#: wp-signup.php:182
+msgid "Send Us Your Opinion"
+msgstr "Mandanos tu opinión"
+
+#: wp-signup.php:182
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: wp-signup.php:182
+msgid "Write your Name"
+msgstr "Escribe tu nombre"
+
+#: wp-signup.php:182
+msgid "Write your Surname"
+msgstr "Escribe tu apellidos"
+
+#: wp-signup.php:182
+msgid "Write your Phone"
+msgstr "Escribe tu Telefono"
+
+#: wp-signup.php:182
+msgid "Write your opinion"
+msgstr "Escribe tu opinión"
+
+#: wp-signup.php:182
+msgid "Get connected with us on social networks!"
+msgstr "¡Conecta con nosotros en las redes sociales!"
+
+#: wp-signup.php:182
+msgid "Products"
+msgstr "Productos"
+
+#: wp-signup.php:182
+msgid "Useful links"
+msgstr "Links utiles"
+
+#: wp-signup.php:182
+msgid "Your Account"
+msgstr "Tu cuenta"
+
+#: wp-signup.php:182
+msgid "Become an Affiliate"
+msgstr "Afiliate"
+
+#: wp-signup.php:182
+msgid "Shipping Rates"
+msgstr "Tarifas de envio"
+
+#: wp-signup.php:182
+msgid "The best place for the finest"
+msgstr "El mejor lugar para los mejores"
+
+#: wp-signup.php:182
+msgid "Good food from god's oven"
+msgstr "Buena comida del horno de Dios"
+
+#: wp-signup.php:182
+msgid "We strive for consistency so that each visit to our bakery delivers the same reliably satisfying experience while offering an exciting variety of products."
+msgstr "Nos esforzamos por mantener la coherencia, de modo que cada visita a nuestra panadería brinde la misma experiencia fiable y satisfactoria a la vez que ofrece una interesante variedad de productos."
+
+#: wp-signup.php:182
+msgid "Bread Bakery is a New York bakery dedicated to producing artisanal,handmade breads using traditional baking techniques."
+msgstr "Bread Bakery es una panadería de Nueva York dedicada a la producción artesanal de panes artesanales utilizando técnicas tradicionales de cocción."
+
+#: wp-signup.php:182
+msgid "Most of the artisan breads we bake are made with whole grains and go through a slow proofing process, which sharpens and improves the taste."
+msgstr "La mayoría de los panes artesanales que horneamos están hechos con granos enteros y pasan por un proceso de prueba lenta, que agudiza y mejora el sabor."
+
+#: wp-signup.php:182      
+msgid "A lot of thought has been given to the components of the bread, types of flour and the addition of seeds and grains which increase the nutritional value."
+msgstr "Se ha pensado mucho en los componentes del pan, los tipos de harina y la adición de semillas y granos que aumentan el valor nutricional."
+
+#: wp-signup.php:182      
+msgid "We select only the finest ingredients and, when possible, use natural and organic ingredients."
+msgstr "Seleccionamos solo los mejores ingredientes y, cuando es posible, usamos ingredientes naturales y orgánicos."
+
+#: wp-signup.php:182      
+msgid "The bakery bakes both sweet and savory items including rustic breads and pastries."
+msgstr "La panadería sirve platos dulces y salados, incluidos panes y pasteles rústicos."
+      
+#: wp-signup.php:182        
+msgid "OUR MISSION"
+msgstr "NUESTRA MISION"
+
+#: wp-signup.php:182
+msgid "We use only the finest quality ingredients providing your body with important fiber and nutrients."
+msgstr "Usamos solo los ingredientes de la mejor calidad para que su cuerpo tenga fibra y nutrientes importantes."
+
+#: wp-signup.php:182
+msgid "OUR VALUES"
+msgstr "NUESTROS VALORES"
+
+#: wp-signup.php:182
+msgid "We strive to care for you and the environment we live in. All breads, fillings, and salads are considered for healthy living."
+msgstr "Nos esforzamos por cuidar de usted y del medio ambiente en el que vivimos. Todos los panes, rellenos y ensaladas se consideran para una vida saludable."
+
+#: wp-signup.php:182
+msgid "BAKERY CATERING"
+msgstr "RESTAURACION DE LA PANADERIA"
+
+#: wp-signup.php:182
+msgid "Our elegant festive trays add style and taste to any event and are prepared with the utmost attention to detail."
+msgstr "Nuestras elegantes bandejas festivas agregan estilo y sabor a cualquier evento y están preparadas con la máxima atención al detalle."
+
+#: wp-signup.php:182
+msgid "read history"
+msgstr "Leer historia"
+
+#: wp-signup.php:182
+msgid "Foundation"
+msgstr "Fundación"
+
+#: wp-signup.php:182
+msgid "Bakery was founded by Peter Beckmann in November 1985."
+msgstr "Bakery fue fundada por Peter Beckmann en noviembre de 1985."
+
+#: wp-signup.php:182
+msgid "Son of a craftsman family, he apprenticed in bread-making at Mantei Bakery in Heidelberg, Germany."
+msgstr "Hijo de una familia de artesanos, fue aprendiz en la fabricación de pan en Mantei Bakery en Heidelberg, Alemania."
+
+#: wp-signup.php:182
+msgid "After moving to the United States in 1982, Peter had a longing for the traditional breads of his home country, Germany."
+msgstr "Después de mudarse a los Estados Unidos en 1982, Peter tenía un anhelo por los panes tradicionales de su país de origen, Alemania."
+
+#: wp-signup.php:182
+msgid "He baked the first commercial loaves in his kitchen oven and hand-delivered those first samples on his bicycle to four local Santa Cruz grocery stores."
+msgstr "Horneó los primeros panes comerciales en el horno de su cocina y entregó personalmente esas primeras muestras en su bicicleta a cuatro supermercados locales de Santa Cruz."
+
+#: wp-signup.php:182
+msgid "This was the start of a bakery that to this day has been honoring the German commitment to traditional artisan bread making."
+msgstr "Este fue el comienzo de una panadería que hasta el día de hoy honra el compromiso alemán con el pan artesano tradicional."
+                
+#: wp-signup.php:182        
+msgid "The bakery started producing bread only for the people who lived near the premises since there was no possibility of transporting the bread very far before it became bad."
+msgstr "La panadería comenzó a producir pan solo para las personas que vivían cerca de las instalaciones ya que no había posibilidad de transportar el pan muy lejos antes de que se volviera malo."
+
+#: wp-signup.php:182
+msgid "First Year"
+msgstr "Primer año"
+
+#: wp-signup.php:182
+msgid "In the first year, Sharon May joined the business as a partner, increasing sales locally and expanding"
+msgstr "En el primer año, Sharon May se unió al negocio como socio, aumentando las ventas localmente y expandiendo"
+
+#: wp-signup.php:182
+msgid "the distribution of the products to large neighboring cities in the San Francisco Bay area."
+msgstr "la distribución de los productos a las grandes ciudades vecinas en el área de la Bahía de San Francisco."
+
+#: wp-signup.php:182
+msgid "Sharon and Peter expanded the business by opening a local retail bakery and cafe,"
+msgstr "Sharon y Peter expandieron el negocio abriendo una panadería y cafetería local,"
+
+#: wp-signup.php:182
+msgid "selling bread at farmers' markets and branding Beckmann’s products in the wholesale grocery marketplace"
+msgstr "vendiendo pan en los mercados de agricultores y marcando los productos de Beckmann en el mercado mayorista de abarrotes"                   
+
+#: wp-signup.php:182
+msgid "Relocation"
+msgstr "Reubicación"
+
+#: wp-signup.php:182
+msgid "About us"
+msgstr "Sobre nosotros"
+
+#: wp-signup.php:182
+msgid "In 1989, the Loma Prieta earthquake forced a relocation to our current location in the Seabright Station Cannery."
+msgstr "En 1989, el terremoto de Loma Prieta obligó a un traslado a nuestra ubicación actual en la fábrica de conservas Seabright Station."
+
+#: wp-signup.php:182
+msgid "The move allowed for increased production space and a new capacity for growth.  By 1991, Beth Holland joined the company,"
+msgstr "El movimiento permitió un mayor espacio de producción y una nueva capacidad de crecimiento. En 1991, Beth Holland se unió a la compañía,"
+
+#: wp-signup.php:182
+msgid "became General Manager in 1997 and is now the company’s CEO.  Together they developed a management team which allowed for continued growth in distribution,"
+msgstr "se convirtió en Gerente General en 1997 y ahora es el CEO de la compañía. Juntos desarrollaron un equipo de gestión que permitió un crecimiento continuo en la distribución,"
+
+#: wp-signup.php:182
+msgid "service and production over the next 14 years becoming  a certified organic facility (CCOF) in 2002 and a food safety certified facility (NSF) in 2005."
+msgstr "servicio y producción durante los próximos 14 años convirtiéndose en una instalación orgánica certificada (CCOF) en 2002 y una instalación certificada de inocuidad alimentaria (NSF) en 2005." 
+
+#: wp-signup.php:182        
+msgid "25th"
+msgstr "25 aniversario"
+
+#: wp-signup.php:182
+msgid "At the time of our 25th anniversary in November 2010, we employ 120 local residents and deliver approximately 14,000 fresh,"
+msgstr "En el momento de nuestro 25º aniversario en noviembre de 2010, empleamos a 120 residentes locales y entregamos aproximadamente 14,000 productos frescos,"
+
+#: wp-signup.php:182
+msgid "high-quality, natural artisan breads to Northern California grocery stores.  We have a farmers' market division servicing 48"
+msgstr "panes artesanales naturales de alta calidad para las tiendas de comestibles del norte de California. Tenemos una división del mercado de agricultores que presta servicios a 48"
+
+#: wp-signup.php:182
+msgid "markets per week selling our breads as well as our fabulous cookies, pies and pastries."
+msgstr "mercados por semana vendiendo nuestros panes, así como nuestras fabulosas galletas, pasteles y pasteles."
+
+#: wp-signup.php:182
+msgid "We bake with a passion to offer you high-quality natural products for your enjoyment and nourishment."
+msgstr "Horneamos con la pasión de ofrecerle productos naturales de alta calidad para su disfrute y nutrición."
+
+#: wp-signup.php:182        
+msgid "Actually"
+msgstr "Actualmente"
+
+#: wp-signup.php:182
+msgid "We are currently one of the best homemade bakeries in the world. We have a very good price and we only use natural products. Come buy our bakery and enjoy good bread."
+msgstr "Actualmente somos una de las mejores panaderías caseras del mundo. Tenemos un muy buen precio y solo usamos productos naturales. Ven a comprar nuestra panadería y disfruta de un buen pan."
+
+#: wp-signup.php:182
+msgid "Our Team"
+msgstr "Nuestro equipo"
+
+#: wp-signup.php:182
+msgid "Most popular specials product"
+msgstr "Productos especiales mas populares"
+
+#: wp-signup.php:182
+msgid "Read More"
+msgstr "Leer mas"
+
+#: wp-signup.php:182
+msgid "Member"
+msgstr "Trabajadores"
+
+#: wp-signup.php:182
+msgid "Client"
+msgstr "Clientes"
+
+#: wp-signup.php:182
+msgid "Products"
+msgstr "Productos"
+
+#: wp-signup.php:182
+msgid "WHAT PEOPLE SAY ABOUT US?"
+msgstr "¿QUÉ DICE LA GENTE DE NOSOTROS?"
+
+#: wp-signup.php:182
+msgid "Search"
+msgstr "Buscar"
+
+#: wp-signup.php:182
+msgid "By"
+msgstr "Por"
+
+#: wp-signup.php:182
+msgid "Price"
+msgstr "Precio"
+
+#: wp-signup.php:182
+msgid "Come to our bakery before stock and date get closed."
+msgstr "Venga a nuestra panadería antes de la fecha y que se acabe el stock."

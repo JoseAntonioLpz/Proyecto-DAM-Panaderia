@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
 
+:root{
+    --color-blue: #355e85;
+    --color-red: #f03434;
+    --color-dark: #333745;
+    --color-orange: #ffb735;
+    --color-green: #58dd8f;
+}
+
 h1,
 h2,
 h3,
@@ -47,6 +55,36 @@ select{
     text-align: right;
 }
 
+.blue{
+    color: var(--color-blue);
+}
+
+.red{
+    color: var(--color-red);
+}
+
+.orange{
+    color: var(--color-orange);
+}
+
+.green{
+    color: var(--color-green);
+}
+
+.white{
+    color: white;
+}
+
+.transbackground{
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+}
+
+a{
+    cursor: pointer;
+}
+
 html,
 body {
     width: 100%;
@@ -62,22 +100,24 @@ body {
 header {
     width: 100%;
     height: 10%;
-    background-color: #f6f0ee;
+    background-color: #222;
     display: flex;
 }
 
 header>a {
-    color: #355e85;
+    color: white;
     text-decoration: none;
     flex: 1;
+    font-size: 1.3em;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: center;
+    transition: .2s all ease-in-out;
 }
 
 header>a:hover {
-    color: #f03434;
+    color: var(--color-red);
 }
 
 .cuerpo {
@@ -85,13 +125,15 @@ header>a:hover {
     flex-direction: row;
     height: 90%;
     width: 100%;
+    overflow: hidden;
+
 }
 
 /* Aside */
 
 aside {
     flex: 1 0 15%;
-    background-color: #afa5a0;
+    background-color: #222;
     display: flex;
     flex-direction: column;
 }
@@ -104,27 +146,45 @@ aside>nav {
     flex: 1 0 80%;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    line-height: 100px;
+    align-items: center;
 }
 
 aside>nav>a {
+    flex: 1;
+    width: 100%;
+    padding-left: 80px;
+    align-items: center;
     text-decoration: none;
-    color: #474747;
+    color: white;
     font-size: 1.5em;
-    border-bottom: 1px solid white;
-    padding-bottom: 10%;
+    display: flex;
+    flex-direction: row;
+    transition: .1s all ease-in-out;
 }
 
 aside>nav>a:hover {
-    background-color: #e5e5e5;
+    color: #222;
+    background-color: #eee;
+}
+
+aside>nav>a:hover{
+    padding-left: 50px;
+    transform: translateX(-20px);
+}
+aside>nav>a:active{
+    padding-left: 40px;
+    transform: translateX(0px);
 }
 
 /* Section */
 
 section {
     flex: 1 0 85%;
-    background-color: #8e5b47;
+    background-color: #222;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     display: flex;
 }
 
@@ -135,11 +195,11 @@ section>div {
 }
 
 .cuenta {
-    padding: 5% 2.5% 5% 5%;
+    padding: 0% 2.5% 5% 5%;
 }
 
 .productos {
-    padding: 5% 5% 5% 2.5%;
+    padding: 0% 5% 5% 2.5%;
 }
 
 .divHeader {
@@ -158,9 +218,23 @@ section>div {
     overflow: auto;
 }
 
+#tablaTicket{
+    border: none;
+}
+
 #tablaTicket tbody tr:first-child {
     /*Permitir que las cabezas de la tabla se vean durante el scroll*/
     /* Position fixed y una fila vacía debajo. */
+    background-color: var(--color-blue);
+    color: white;
+}
+
+#tablaTicket tbody tr td{
+    padding: 5px;
+}
+
+#tablaTicket tbody tr:nth-child(even){
+    background-color: #eee;
 }
 
 .divBodyPro {
@@ -171,7 +245,7 @@ section>div {
     align-items: flex-start;
     justify-content: flex-start;
     align-content: flex-start;
-    overflow: auto;
+    overflow-x: scroll;
 }
 
 .divBodyPro .pbox {
@@ -184,6 +258,13 @@ section>div {
     background-position: center center;
     background-size: 30%;
     cursor: pointer;
+}
+
+.divBodyPro .pbox.ghost{
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    cursor: auto;
 }
 
 .divBodyPro>div>.pimg {
@@ -201,7 +282,9 @@ section>div {
     height: 100%;
     background-color: white;
     opacity: 0;
-    transition: .2s opacity, box-shadow ease-in-out;
+    -moz-user-select: none;
+    user-select: none;
+    transition: .1s all ease-in-out;
 }
 
 .divBodyPro>div>.pimg>div>h3 {
@@ -212,7 +295,7 @@ section>div {
     color: #222;
     text-transform: capitalize;
     opacity: 0;
-    transition: .2s opacity, font-size ease-in-out;
+    transition: .2s opacity, font-size ease-out;
 }
 
 .divBodyPro>div>.pimg>div:hover>h3,
@@ -242,7 +325,7 @@ section>div {
 }
 
 .redColor>td {
-    color: red;
+    color: var(--color-red);
 }
 
 .divFooter .changeCat {
@@ -287,16 +370,9 @@ section>div {
 
 /* Animación a la cesta. */
 
-.divBodyPro>div>.pimg>div:active h3 {
-    font-size: 1.3em;
-}
-
 .divBodyPro>div>.pimg>div:active {
-    -moz-box-shadow: inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow: inset 0 0 10px #000000;
+    transform: scale(1.2, 1.2);
 }
-
 
 .loadbox {
     height: 80px;
@@ -344,22 +420,21 @@ section>div {
 
 
 .searchProduct{
-    width: 100%;
+    flex: 1 0 5%;     
     display: flex;
     justify-content: space-between;
-    background: lightblue;
 }
 
 .searchProduct input[name='search']{
-    flex: 1;
+    flex: 1 0 100px;
     padding: 5px;
     border: 2px solid white;
 }
 
 .searchProduct input[type='button']{
+    flex: 0;
     padding: 5px;
     background-color: #f03434;
-    border-radius: 2px;
     color: white;
     border: 2px solid white;
     cursor: pointer;
@@ -367,6 +442,10 @@ section>div {
 
 .searchProduct input[type='button']:active{
     color: #ddd;
+}
+
+.searchProduct span{
+    flex: 1;
 }
 
 
@@ -422,10 +501,15 @@ section>div {
     padding: 5px;
 }
 
+#unblock{
+    cursor: pointer;
+}
+
 /**********************************************************/
 
 #loadmore {
-    flex: 100%;
+    position: fixed;
+    width: 34.7%;
     text-align: center;
     background-color: white;
     color: #f03434;
@@ -462,3 +546,538 @@ section>div {
         transform: translateX(-30px);
     }
 }
+
+.ticket-detail .fa{
+    transition: .2s all ease-in-out;
+}
+
+.ticket-detail .fa:hover{
+    transform: scale(1.8, 1.8);
+}
+
+.ticket-detail .fa:active{
+    transform: scale(1.2, 1.2);
+}
+
+.logo{
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+.dashboardContainer{
+    display: flex;
+    height: 200px;
+    flex-flow:row wrap;
+}
+
+
+.dashboardContainer a{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, .7);
+    flex: 0 0 400px;
+    height: 200px;
+    text-decoration: none;
+    color: #222;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    transition: .2s all ease-in-out;
+}
+
+.dashboardContainer span{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #222;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, .9);
+    flex: 100%;
+    height: 150px;
+    text-decoration: none;
+    color: #222;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+.dashboardContainer a p{
+    text-transform: none;
+}
+
+.dashboardContainer a:hover{
+    transform: scale(1.1, 1.1);
+}
+.dashboardContainer a:active{
+    transform: scale(1, 1);
+}
+
+.memberContainer .fondo{
+    width: 50%;
+    background-image: none;
+    /*background-color: rgba(255, 255, 255, .8);*/
+    padding: 20px;
+    margin: 0px 80px 40px;
+}
+
+.memberContainer{
+    background-image: url(../img/backgroundMembers.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+.memberContainer.clients{
+    background-image: url(../img/backgroundClients.jpg);
+}
+
+.memberContainer.tickets{
+    background-image: url(../img/backgroundTickets.jpg);
+}
+
+.memberContainer form{
+    padding: 40px;
+    background-color: rgba(255, 255, 255, .8);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.memberContainer.clients form{
+    width: 90%;
+}
+
+.memberContainer.clients form.edit_client{
+    width: 30%;
+}
+
+.memberContainer.clients form.edit_client input[type='submit']{
+    flex: 100%;
+}
+
+.memberContainer.clients form .fields{
+    margin: 10px 10px 20px;
+}
+
+.memberContainer form input{
+    flex: 1;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+.btn{
+    color: var(--color-dark);
+    border: 2px solid var(--color-dark);
+    padding: 5px 10px 5px;
+    align-self: flex-start;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 2px;
+    margin: 10px 0px 10px;
+    transition: .2s all ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: white;
+    background-color: var(--color-dark);
+    transform: scale(1.2, 1.2);
+}
+.btn:active{
+    transform: scale(1, 1);
+}
+
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer form{
+    border: 2px solid black;
+    border-radius: 2px;
+    /*background-color: rgba(0, 0, 0, .9);*/
+    /*background-color: var(--color-dark);*/
+    background-image: url(../img/texture.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 250%;
+    mix-blend-mode: darken;
+    padding: 40px 80px 80px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.loginContainer form h1{
+    flex: 1;
+    color: white;
+    text-align: center;
+}
+
+.loginContainer form span{
+    flex: 1;
+    display: flex;
+    margin: 5px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: .2s border ease-in-out;
+}
+
+.loginContainer form span label{
+    flex: 1;
+    padding: 5px;
+    border-radius: 2px 0px 0px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: var(--color-red);
+    transition: .2s all ease-in-out;
+}
+
+.loginContainer form span input{
+    margin: 0;
+    padding: 10px;
+    border: none;
+    border-radius: 0px 2px 2px 0px;
+}
+
+.loginContainer form span:hover{
+    border: 2px solid white;
+}
+
+.loginContainer form span:focus-within{
+    border: 2px solid white;
+}
+
+.loginContainer form input[type='submit']{
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    background-color: var(--color-red);
+    border-radius: 0px 2px 2px 0px;
+    cursor: pointer;
+    transition: .2s transform ease-in-out;
+}
+
+.loginContainer form input[type='submit']:hover{
+    transform: scale(1.2, 1.2);
+}
+
+.loginContainer form input[type='submit']:active{
+    transform: scale(1, 1);
+}
+
+
+.btnEdit, .btnDelete {
+    padding: 10px 15px 10px 15px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    opacity: .8;
+    text-decoration: none;
+    transition: .2s all ease-in-out;
+}
+
+.btnEdit:hover, .btnDelete:hover {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+}
+
+.btnEdit:active, .btnDelete:active{
+    opacity: 1;
+    transform: scale(.9, .9);
+}
+
+.btnEdit {
+    cursor: pointer;
+    color: var(--color-blue);
+    border: 2px solid var(--color-blue);
+}
+
+.btnEdit:hover {
+    color: white;
+    background-color: var(--color-blue);
+}
+
+.btnDelete {
+    cursor: pointer;
+    color: var(--color-red);
+    border: 2px solid var(--color-red);
+    -moz-user-select: none; /* Firefox */
+    user-select: none;
+}
+.close.btnDelete{
+    color: var(--color-red);
+    float: none;
+    font-size: inherit;
+}
+.close.btnEdit{
+    color: var(--color-blue);
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.actions {
+    display: flex;
+}
+
+#form-client{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+#form-client .fields{
+    flex: 0 0 400px;
+}
+
+
+/*----------------modal para apuntar ticket-------------*/
+
+.modal-content.modal-apuntar{/*estilo para modal-content*/
+    width: 460px;
+    position: relative;
+}
+
+.apuntar{/*estilo para .close*/
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+/*#form_register_client{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}*/
+
+.div_form_register_client{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/*#search-client{
+    display:flex;
+}*/
+
+.search-client-form{
+    display: flex;
+}
+
+/*#searchClientInput{
+    flex: 1 0 85%;
+    padding: 5px;
+}*/
+
+.input-search-client{
+    flex: 1 0 85%;
+    padding: 5px;
+}
+
+/*#btSearchClient{
+    flex: 1 0 5%;
+    padding: 5px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+    cursor: pointer;
+}*/
+
+.bt-search-client{
+    flex: 1 0 5%;
+    padding: 5px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+    cursor: pointer;
+}
+
+/*#btSearchClient:hover{
+    background-color: #D30000;
+}*/
+
+.bt-search-client:hover{
+    background-color: #D30000;
+}
+
+/*#register_ticket_form{
+    display:flex;
+}*/
+
+.register_ticket_form{
+    display:flex;
+}
+
+/*#select_client_id{
+    flex: 1 0 68%;
+    padding: 5px;
+}*/
+
+.select_client_id{
+    flex: 1 0 68%;
+    padding: 5px;
+}
+
+/*#button_register_ticket{
+    flex: 1 0 20%;
+    padding: 5px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+}*/
+
+.button_register_ticket{
+    flex: 1 0 20%;
+    padding: 5px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+}
+
+#button_register_ticket:hover{
+    background-color: #D30000;
+}
+
+/*#resultSearch{
+    margin: 20px 0;    
+}*/
+.resultSearch{
+    margin: 20px 0;    
+}
+
+/*#resultSearch button{
+    padding: 10px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+    cursor: pointer;
+    margin: 2px 2px;
+}*/
+.resultSearch button{
+    padding: 10px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+    cursor: pointer;
+    margin: 2px 2px;
+}
+
+/*#resultSearch button:hover{
+    background-color: #D30000;
+}*/
+.resultSearch button:hover{
+    background-color: #D30000;
+}
+
+/*modal crear nuevo ticket*/
+
+.modal-content .are-you-sure{
+    text-align: center;
+}
+
+.modal-content .actions{
+    display: flex;
+    justify-content: center;
+}
+
+/*modal introducir cantidad*/
+
+.container-cant{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#cant{
+    flex: 1 0 80%;
+    padding: 4px;
+}
+
+.writeCant{
+    flex: 1 0 10%;
+    padding: 5px;
+    background-color: #f03434;
+    color: white;
+    border:none;
+}
+
+.writeCant:hover{
+    background-color: #D30000;
+}
+
+
+
+.fa-plus{
+    color: var(--color-green);
+}
+
+.fa-minus{
+    color: var(--color-orange);
+}
+
+.rmRow{
+    color: #ff6c79;
+}
+
+
+
+/**********************Mensajes de error, tostadas*******************/
+/* Con los errores se mostrarán unas tostadas desde abajo. */
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#error, .error {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#error.show, .error.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 

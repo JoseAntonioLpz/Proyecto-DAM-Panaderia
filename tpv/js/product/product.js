@@ -1,5 +1,9 @@
 $(document).ready(function() {
-
+    
+    if ($('#error').text() != ''){
+        $("#error").trigger("DOMSubtreeModified");
+    }
+    
     // Lista de productos
     var productList = null;
     // Página actual, pero no el número de esta sino la cuenta del
@@ -12,7 +16,12 @@ $(document).ready(function() {
             getAll(0, null, page);
         // }, 1000);
     
-    
+    // Gráfico de carga
+    var loading = '<div class="loadbox">'+
+                        '<div class="loading"></div>'+
+                        '<div class="loading"></div>'+
+                        '<div class="loading"></div>'+
+                    '</div>';
     /**
      * 
      */
@@ -40,25 +49,22 @@ $(document).ready(function() {
     });
     
     function getAll(idfamily, text, page) {
-        console.log(page);
         $('#productBox').empty();
+        $("#productBox").append(loading);
 
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/getAllProducts',
             type: 'get',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'getAllProducts',
                 idfamily: idfamily,
                 text: text,
                 page: page
             }
         }).done(
             function(json) {
-                console.log(json.list);
                 productList = json.list;
-                
+                $('#productBox').empty();
                 // Muestra la primera página de la lista de productos.
                 //displayProducts(0);
                 
@@ -67,9 +73,27 @@ $(document).ready(function() {
                     createProduct(product);
                 }
                 initEvents();
+                
+                var previous = $(".pbox").length;
+                var multipleFound = false;
+                var nearest = previous;
+                while(!multipleFound){
+                    var n = nearest % 3;
+                    if (n == 0){
+                        multipleFound = true;
+                    }else{
+                        nearest++;
+                    }
+                }
+                console.log(nearest);
+                var nGhosts = nearest - previous;
+                for (var i = 0; i < nGhosts; i++){
+                    createGhost();
+                }
             }
         ).fail(
             function(json) {
+                $('#productBox').empty();
                 console.log(json.list);
                 console.log("Hubo un error.");
             }
@@ -87,7 +111,7 @@ $(document).ready(function() {
             loadModal(id);
             
             // Limpia la imagen anterior
-            $('#preview').attr('src', '?ruta=product&accion=showImage&id=' + id + '');
+            $('#preview').attr('src', 'product/showImage?id=' + id + '');
         });
 
         $(".btnDelete").click(function() {
@@ -114,16 +138,22 @@ $(document).ready(function() {
             $(".blur").css('filter', 'blur(0px)')
             $("#modalEdit").css('display', 'none');
         });
+        
+        // Cierra el modal cuando click fuera
+        $("#modalEdit").click(function(e) {
+            if (e.target.id == "modalEdit"){
+                $(".blur").css('filter', 'blur(0px)')
+                $("#modalEdit").css('display', 'none');
+            }
+        });
     }
     /****************************************** _product_list.html */
     function loadModal(id) {
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/getDetailsProduct',
             type: 'get',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'getDetailsProduct',
                 id: id
             }
         }).done(
@@ -139,7 +169,7 @@ $(document).ready(function() {
         );
         
         if ($(".info").text() == ''){
-            $(".info").text("Sube una imagen menor de 2MB.")
+            $(".info").text("Upload an image smaller than 2MB.")
         }
         
     }
@@ -166,7 +196,7 @@ $(document).ready(function() {
         var description = product.description;
 
         var div = '<div class="pbox">' +
-            '<div class="pimg" style="background-image: url(?ruta=product&accion=showImage&id=' + id + ');"></div>' +
+            '<div class="pimg" style="background-image: url(product/showImage?id=' + id + ');"></div>' +
             '<div class="pdetails">' +
             '<h3>' + name + '</h3>' +
             '<div class="pfamily">' + idfamily + '</div>' +
@@ -174,14 +204,14 @@ $(document).ready(function() {
             '<p>' + description + '</p>' +
             '</div>' +
             '<div class="pbuttons">' +
-            '<button class="btnEdit" data-id="' + id + '"> Editar </button>' +
-            '<button class="btnDelete" data-id="' + id + '"> Borrar </button>' +
+            '<button class="btnEdit" data-id="' + id + '"> Edit </button>' +
+            '<button class="btnDelete" data-id="' + id + '"> Remove </button>' +
             '</div>' +
             '</div>';
         $('#productBox').append(div);
     }
 
-    // Crea un div fantasma para arreglar la cuadrícula flex.
+    // Crea un div fantasma para arreglar la cuadrícula flex. No usado.
     function createGhost(loops){
         var i = 0;
         while(i < loops){
@@ -198,7 +228,7 @@ $(document).ready(function() {
         var price = product.price;
         var description = product.description;
         $('#id').val(id);
-        $('#image').val('');
+        $('#image0').val('');
         // Comprueba cada <option> y si tiene el valor de la familia se autoselecciona.
         $('#family option').each(function() {
             if ($(this).val() === idfamily) {
@@ -212,20 +242,24 @@ $(document).ready(function() {
         $('#price').val(price);
         $('#description').val(description);
     }
+    
+    function createGhost(){
+        var div = $('<div class="pbox ghost">' +
+            '</div>');
+        $('#productBox').append(div);
+    }
 
     function deleteProduct(id) {
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/deleteProduct',
             type: 'get',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'deleteProduct',
                 id: id
             }
         }).done(
             function(json) {
-                getAll();
+                getAll(0, null, page);
             }
         ).fail(
             function(json) {
@@ -237,9 +271,14 @@ $(document).ready(function() {
 
     $("#editImage").click(function(){
         var file = $(this).closest('form');
-        console.log (file[0]);
+        $(".info").after('<div class="loadbox mini">'+
+                '<div class="loading"></div>'+ 
+                '<div class="loading"></div>'+
+                '<div class="loading"></div>'+
+            '</div>');
+        
         $.ajax({
-            url: "index.php?ruta=product_ajax&accion=uploadImg",
+            url: "product_ajax/uploadImg",
             type: "post",             
             data: new FormData(file[0]), // Formulario que contiene el archivo de imagen
             contentType: false,       // Tipo de contenido que se envía al servidor
@@ -247,16 +286,18 @@ $(document).ready(function() {
             processData:false        // Para enviar documento DOM o archivos sin procesar estando en false.
         }).done(
             function(data) {
+                console.log(data.msgimage);
+                $(".loadbox").remove();
                 $(".info").text(data.msgimage);
                 if($(".info").text().indexOf("Error") != -1){
-                    $(".info").addClass("error");
+                    $(".info").addClass("errorr");
                 }else{
-                    $(".info").removeClass("error");
+                    $(".info").removeClass("errorr");
                 }
             }
         ).fail(
             function(data) {
-                $(".info").text("No se puedo subir la imagen.");
+                $(".info").text("The image can't be upload.");
             }
         );
     });
@@ -275,9 +316,15 @@ $(document).ready(function() {
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $("#image").change(function(){
-        readURL(this);
-    });
+    function asociaEvento(id) {
+        $(id).change(function(){
+            var filename = $(this).val().split('\\').pop();
+            $(id + " + label span").text(filename);
+            readURL(this);
+        });
+    }
+    asociaEvento("#image0");
+    
 
     // Guardar producto editado
     $("#editProduct").click(function() {
@@ -288,12 +335,10 @@ $(document).ready(function() {
         var price = $("#price").val();
         var description = $("#description").val();
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/saveDetailsProduct',
             type: 'post',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'saveDetailsProduct',
                 id: id,
                 idfamily: idfamily,
                 product: product,
@@ -304,7 +349,7 @@ $(document).ready(function() {
             function(json) {
                 $(".blur").css('filter', 'blur(0px)')
                 $("#modalEdit").css('display', 'none');
-                getAll();
+                getAll(0, null, page);
             }
         ).fail(
             function(json) {
@@ -316,21 +361,51 @@ $(document).ready(function() {
 
     /*******************************************/
     /****************************************** _product_insert.html */
-    var count = 2;
+    var families = '';
+    var count = 1;
+    
+    function getFamilies(){
+        $.ajax({
+            url: 'family',
+            type: 'get',
+            dataType: 'json'
+        }).done(function(json) {
+            families = json.data;
+        }).fail(
+            function() {
+                console.log("Esto ha fallado.")
+            }
+        );
+    }
+    
+    if ($('#oneMoreProduct').length){
+        getFamilies();
+    }
+    
     $('#oneMoreProduct').click(function() {
-        var newProduct = '<input type="file" name="img[]" />' +
-            '<select id="idfamily_' + count + '" name="idfamily[]">' +
-            '<option value="1">Pan</option>' +
-            '<option value="2">Bollería</option>' +
-            '<option value="3">Croissantería</option>' +
-            '<option value="4">Navidad</option>' +
-            '<option value="5">Otros</option>' +
-            '</select>' +
-            '<input type="text" id="product_' + count + '" name="product[]" value="" />' +
-            '<input type="text" id="price_' + count + '" name="price[]" value="" />' +
-            '<textarea id="description_' + count + '" name="description[]" value=""></textarea>' +
-            '<hr>';
-        $('#newProducts hr').last().after(newProduct);
+        var newProduct = '<div class="newProductContainer">' +
+            '<input class="styleImage" type="file" id="image' + count + '" name="img['+count+']" />' +
+            '<label for="image' + count + '" class="medium">'+
+                '<p><i class="fa fa-image" aria-hidden="true"></i></p>'+
+                '<span></span>'+
+            '</label>' +
+            '<select id="idfamily_' + count + '" name="idfamily['+count+']" class="medium">';
+            
+            for (var i = 0; i < families.length; i++) {
+                newProduct += '<option value="' + families[i].id + '">' + families[i].family + '</option>';
+            }
+            newProduct += '</select>' +
+            '<input type="text" id="product_' + count + '" name="product['+count+']" value="" class="medium" placeholder="Name"/>' +
+            '<input type="text" id="price_' + count + '" name="price['+count+']" value="" class="medium" placeholder="Price"/>' +
+            '<textarea id="description_' + count + '" name="description['+count+']" value="" class="medium" placeholder="Description"></textarea>' +
+            '<button type="button" class="removeNewProduct medium  btnDelete">Remove</button>' +
+            '</div>';
+        $('#newProducts div').last().after(newProduct);
+        asociaEvento("#image" + count);
         count++;
+        $('#newProducts .removeNewProduct').click(function() {
+            $(this).closest(".newProductContainer").remove();
+        });
     });
+    
 });

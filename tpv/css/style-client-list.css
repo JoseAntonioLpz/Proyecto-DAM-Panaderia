@@ -1,114 +1,191 @@
 /*@import url('font-awesome/css/font-awesome.min.css');*/
-body{
-    margin:0;
+
+body {
+    margin: 0;
 }
 
-table{
-  width:100%;
-  table-layout: fixed;
+table {
+    width: 100%;
+    table-layout: fixed;
 }
-.tbl-header{
-  background-color: rgba(255,255,255,0.3);
- }
-.tbl-content{
-  /*height:300px;*/
-  overflow-x:auto;
-  margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
+
+.tbl-header {
+    background-color: var(--color-blue);
+    color: white;
+    text-transform: capitalize;
+    border-radius: 2px 2px 0px 0px;
 }
-th{
-  padding: 20px 15px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
+
+#details_table tr:first-child{
+    background-color: var(--color-blue);
+    color: white;
+    text-transform: capitalize;
+    padding: 10px;
+    border-radius: 2px 2px 0px 0px;
 }
-td{
-  padding: 15px;
-  text-align: center;
-  vertical-align:middle;
-  font-weight: 300;
-  font-size: 12px;
-  color: #fff;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
+
+.tbl-content, #details_table{
+    /*height:300px;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 0px;
+    color: #222;
+    background-color: rgba(255, 255, 255, .8);
+    text-align: center;
+    border-radius: 0px 0px 2px 2px;
+}
+
+
+.tbl-header tr {
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+#details_table tr{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.tbl-content tr {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+th, td {
+    flex: 1;
+    text-transform: capitalize;
+}
+
+.tbl-content table tr:nth-child(even), #details_table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, .5);
 }
 
 
 /* demo styles */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-.fondo{
-  background: -webkit-linear-gradient(left, #CD5C5C, #E9967A);
-  background: linear-gradient(to right, #CD5C5C, #E9967A);
-  /*background-image: url(../img/background1.jpg);
+.fondo {
+    background: -webkit-linear-gradient(left, #CD5C5C, #E9967A);
+    background: linear-gradient(to right, #CD5C5C, #E9967A);
+    /*background-image: url(../img/background1.jpg);
   background-size: cover;
   background-position: center;*/
-  /*: linear-gradient(left, rgba(243,207,200,1) 0%, rgba(193,116,103,1) 0%, rgba(183,93,78,1) 36%, rgba(233,188,180,1) 100%);*/
-  font-family: 'Roboto', sans-serif;
+    /*: linear-gradient(left, rgba(243,207,200,1) 0%, rgba(193,116,103,1) 0%, rgba(183,93,78,1) 36%, rgba(233,188,180,1) 100%);*/
+    font-family: 'Roboto', sans-serif;
 }
 
 
-a{
+a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
 
 /*----------------botones----------------------*/
 
-.actions{
+.actions {
     display: flex;
     justify-content: center;
 }
 
-.bt-action{
+.bt-action {
     padding: 10px 15px 10px 15px;
-    border-radius: 5px;
+    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 5px;
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+    opacity: .8;
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);*/
+    transition: .2s all ease-in-out;
 }
 
-.edit{
-    background-color: #59d;
+.bt-action:hover {
+    opacity: 1;
+    transform: scale(1.3, 1.3);
 }
 
-.remove{
-    background-color: #d33;
+.bt-action:active {
+    opacity: 1;
+    transform: scale(.9, .9);
 }
 
-.confirm{
-   background-color: #01DF01; 
+.edit {
+    color: var(--color-blue);
+    border: 2px solid var(--color-blue);
+}
+
+.edit:hover {
+    color: white;
+    background-color: var(--color-blue);
+}
+
+.remove {
+    color: var(--color-red);
+    border: 2px solid var(--color-red);
+}
+
+.remove:hover {
+    color: white;
+    background-color: var(--color-red);
+}
+
+.confirm {
+    background-color: #01DF01;
 }
 
 /*----------------------paginacion----------------------*/
+
+nav[role='navigation'] {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
 
 .pagination {
     display: inline-block;
 }
 
 .pagination a {
-    color: black;
+    color: #222;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 2px;
+    margin: 0px 10px 0px;
+    transition: .2s all ease-in-out;
 }
 
 .pagination a.active {
-    background-color: #CD5C5C;
     color: white;
-    border-radius: 5px;
-    box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-blue);
+    opacity: .8;
+    /*box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);*/
 }
 
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 5px;
+.pagination a:hover {
+    opacity: 1;
+    transform: scale(1.3, 1.3);
+}
+
+.pagination a:active {
+    opacity: 1;
+    transform: scale(1, 1);
 }
 
 
@@ -130,7 +207,9 @@ a{
 }
 
 /* Difumina la página cuando se queda detrás del modal */
+
 /* Hay que encerrar todo el código en un <div> con esta clase, desde <body> hasta el inicio de los modales. */
+
 .blur {
     filter: blur(0px);
     transition: ease-in-out filter .2s;
@@ -149,15 +228,67 @@ a{
 
 /*******************************************************/
 
-.order{
+.order {
     cursor: pointer;
 }
 
-.order:hover{
+.order:hover {
     color: #bfc9ca;
 }
 
-.orderSelect::after{
-    content:' \f0d7';
-    font-family:FontAwesome;
+.orderSelect::after {
+    content: ' \f0d7';
+    font-family: FontAwesome;
 }
+
+.actions{
+    display: flex;
+}
+
+/**********************Mensajes de error, tostadas*******************/
+/* Con los errores se mostrarán unas tostadas desde abajo. */
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#error {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#error.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 

@@ -1,9 +1,19 @@
 <section>
-    <form method="post" action="index.php?accion=dologin&ruta=member">
-        <input type="text" name="login" placeholder="usuario"/>
-        <input type="password" name="clave" placeholder="contraseña"/>
-        <input type="submit" value="Submit"/>
+    <div class="loginContainer">
+    <form method="post" action="member/dologin">
+        <h1 class="big thin">Login</h1>
+        <span>
+            <label for="username">Username</label>
+            <input class="medium" id="username" type="text" name="login"/>
+        </span>
+        <span>
+            <label for="password">Password</label>
+            <input class="medium" id="password" type="password" name="clave"/>
+        </span>
+        <input class="big" type="submit" value="Enter"/>
     </form>
+    </div>
 </section>    
+<script type="text/javascript" src="js/block.js"></script>
 </body>
 </html>

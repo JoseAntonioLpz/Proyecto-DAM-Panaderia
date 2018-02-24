@@ -1,49 +1,44 @@
 $(document).ready(function() {
     $.ajax({
-            url: 'index.php',
-            type: 'get',
-            dataType: 'json',
-            data: {
-                ruta: 'product_ajax',
-                accion: 'block'
+        url: 'product_ajax/block',
+        type: 'get',
+        dataType: 'json',
+    }).done(
+        function(data) {
+            var status = data.status;
+            console.log(status);
+            if (status == 'true') {
+                $(".blur").css('filter', 'blur(40px)');
+                $("#modalBlock").css('display', 'block');
+                blockDangerousKeys();
             }
-        }).done(
-            function(data) {
-                var status = data.status;
-                console.log(status);
-                if (status == 'true'){
-                    $(".blur").css('filter', 'blur(40px)');
-                    $("#modalBlock").css('display', 'block');
-                    blockDangerousKeys();
-                }else{
-                    $(".blur").css('filter', 'blur(0px)');
-                    $("#modalBlock").css('display', 'none');
-                    unblockDangerousKeys();
-                }
+            else {
+                $(".blur").css('filter', 'blur(0px)');
+                $("#modalBlock").css('display', 'none');
+                unblockDangerousKeys();
             }
-        ).fail(
-            function() {
-                console.log("Hubo un error.");
-            }
-        );
-        
+        }
+    ).fail(
+        function() {
+            console.log("Hubo un error.");
+        }
+    );
+
     $("#passblock").change(function() {
         $("#unblock").removeClass("errorShake");
     });
-        
+
     $("#unblock").click(function() {
         var pass = $("#passblock").val();
-        
+
         // Obtener contraseña XML y comparar con var pass.
         var ok = false;
-        if (pass != ''){
+        if (pass != '') {
             $.ajax({
-                url: 'index.php',
+                url: 'product_ajax/block',
                 type: 'get',
                 dataType: 'json',
                 data: {
-                    ruta: 'product_ajax',
-                    accion: 'block',
                     pass: pass,
                     status: false
                 }
@@ -51,11 +46,12 @@ $(document).ready(function() {
                 function(data) {
                     var status = data.status;
                     console.log(status);
-                    if (status == 'false'){
+                    if (status == 'false') {
                         $(".blur").css('filter', 'blur(0px)');
                         $("#modalBlock").css('display', 'none');
                         unblockDangerousKeys();
-                    }else{
+                    }
+                    else {
                         $("#unblock").addClass("errorShake");
                     }
                 }
@@ -68,23 +64,25 @@ $(document).ready(function() {
             );
         }
     });
-    
-    
+
+
     $("#blockscreen").click(function() {
         $("#passblock").val('');
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/block',
             type: 'get',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'block',
                 status: true
             }
         }).done(
             function(data) {
                 $(".blur").css('filter', 'blur(40px)');
                 $("#modalBlock").css('display', 'block');
+
+                //se quedaban residuos en la ventana, asi que borro todo menos el span donde se pide la contraseña
+                $('#modalBlock .modal-content').find('span').siblings().remove();
+
                 blockDangerousKeys();
             }
         ).fail(
@@ -93,28 +91,44 @@ $(document).ready(function() {
             }
         );
     });
-    
-    function unblockDangerousKeys(){
+
+    function unblockDangerousKeys() {
         $(document).unbind();
     }
-    
-    function blockDangerousKeys(){
-        $(document).keypress(function (evt) {
-        var keycode = evt.charCode || evt.keyCode;
-        if (keycode >= 111 && keycode <=123) { //Enter key's keycode
-            $("#unblock").attr("style", "border: 2px solid red");
-            setTimeout(function(){
-                $("#unblock").attr("style", "border: 2px solid white");
-            }, 200);
-            return false;
-        }
+
+    function blockDangerousKeys() {
+        $(document).keydown(function(evt) {
+            var keycode = evt.which;
+            if (keycode >= 111 && keycode <= 123) { //Enter key's keycode
+                $("#unblock").attr("style", "border: 2px solid red");
+                setTimeout(function() {
+                    $("#unblock").attr("style", "border: 2px solid white");
+                }, 200);
+                return false;
+            }
         });
-        $(document).on("contextmenu",function(){
+        $(document).on("contextmenu", function() {
             $("#unblock").attr("style", "border: 2px solid red");
-            setTimeout(function(){
+            setTimeout(function() {
                 $("#unblock").attr("style", "border: 2px solid white");
             }, 200);
             return false;
         });
     }
+
+    /* Ya que el bloqueo está en todos lados pondré aquí el código de las tostadas de error. */
+    $('#error, .error').on("DOMSubtreeModified", function() {
+        var that = $(this);
+        $(this).addClass("show");
+        setTimeout(function() {
+            that.removeClass("show");
+            that.text('');
+            clearTimeout(this);
+        }, 3000);
+    });
+    
+    $('#error, .error').click(function() {
+        $(this).removeClass("show");
+        $(this).text('');
+    });
 });

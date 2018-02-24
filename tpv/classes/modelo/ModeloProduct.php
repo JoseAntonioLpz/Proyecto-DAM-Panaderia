@@ -2,16 +2,9 @@
 
 class ModeloProduct extends Modelo {
     
-    function getAllProducts($idfamily, $text, $page){
-        // $array = array();
-        // /* Datos de prueba */
-        // $array[] = new Product(1, 1, "Bread", 0.80, "Very tasty.");
-        // $array[] = new Product(2, 1, "Garlic Bread", 1.00, "I don't know what it's made of.");
-        // $array[] = new Product(3, 2, "Hard Bread", 0.20, "From yesterday.");
-        // $array[] = new Product(4, 1, "Raw Bread", 0.10, "It's just flour.");
-        // // ----------------
+    function getAllProducts($idfamily, $text, $page, $limit){
         $manager = new ManagerProduct($this->getDataBase());
-        $array = $manager->getAll($idfamily, $text, $page);
+        $array = $manager->getAll($idfamily, $text, $page, $limit);
         return $array;
     }
     
@@ -75,14 +68,24 @@ class ModeloProduct extends Modelo {
         return $json;
     }
     
-    function getAllProductsJson($idfamily, $text, $page){
-        $products = $this->getAllProducts($idfamily, $text, $page);
+    function getAllProductsJson($idfamily, $text, $page, $limit){
+        $products = $this->getAllProducts($idfamily, $text, $page, $limit);
         $json = array();
         foreach($products as $product) {
             $product->setIdfamily($this->getFamily($product->getIdfamily()));
             $json[] = $product->getAttributesValues();
         }
         return $json;
+    }
+    
+    function getAllFromWP($a, $b){
+        $manager = new ManagerProduct($this->getDataBase());
+        return $manager->getAllFromWP($a, $b);
+    }
+    
+    function getCount(){
+        $manager = new ManagerProduct($this->getDataBase());
+        return $manager->countProduct();
     }
     
     function listToLi($products){

@@ -1,36 +1,38 @@
-<section>
-    <div>
-    <form id="form-client" method="post" action=".">
+<section class="memberContainer clients">
+    <div class="fondo">
+        <h1 class="big thin white"><i class="fa fa-users" aria-hidden="true"></i> Add clients</h1>
+    <form id="form-client" method="post" action="client/insert_various_clients">
         <div class="fields">
             <input class="name-client" type="text" placeholder="Name*" name="name[]" required>
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="surname-client" type="text" placeholder="Surname*" name="surname[]" required>
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="tin-client" type="text" placeholder="CIF/NIF*" name="tin[]" required>
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="address-client" type="text" placeholder="Address*" name="address[]" required>
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="location-client" type="text" placeholder="Location" name="location[]">
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="postalcode-client" type="number" placeholder="Postal Code" name="postalcode[]">
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="province-client" type="text" placeholder="Province" name="province[]">
-            <span class="error"></span>
+            <span class="error white"></span>
             <input class="email-client" type="email" placeholder="E-mail" name="email[]">
-            <span class="error"></span>
+            <span class="error white"></span>
             <!--Ruta y acción-->
-            <input type="hidden" name="ruta" value="client">
+            <!--<input type="hidden" name="ruta" value="client">-->
             <!--<input type="hidden" name="accion" value="insert_client">-->
-            <input type="hidden" name="accion" value="insert_various_clients">
+            <!--<input type="hidden" name="accion" value="insert_various_clients">-->
+    <input class="medium btn" id="insert_client_submit" type="submit" value="Save">
         </div>
-        <input id="insert_client_submit" type="submit" value="Insert">
     </form>
     
-    <button id="add_more">Add one more</button>
-    <a href="?ruta=client">Cancel</a>
+    <button id="add_more" class="medium btn">Add one more</button>
+    <a href="client" class="btn">Cancel</a>
     </div>
   </section>  
     <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/block.js"></script>
     <script type="text/javascript" src="js/client/client.js"></script>
 </body>
 </html>

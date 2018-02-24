@@ -1,20 +1,21 @@
             <section>
                 <div class="cuenta">
                    <div class="divHeader">
-                       <p class="big thin"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                       <p class="big thin blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         TPV</p>
                    </div>
                    <div class="divBody">
-                       <table id="tablaTicket">
-                           <tr class="redColor">
-                               <td>Cant.</td>
-                               <td>Cod.</td>
-                               <td>Descripcion</td>
-                               <td>PVP/U</td>
-                               <td>Subtotal</td>
-                               <td>Accion</td>
-                           </tr>
-                    
+                       <table id="tablaTicket" cellspacing="0" cellpadding="0">
+                           <tbody>
+                               <tr class="medium">
+                                   <td>Cant.</td>
+                                   <td>Cod.</td>
+                                   <td>Descripcion</td>
+                                   <td>PVP/U</td>
+                                   <td>Subtotal</td>
+                                   <td>Accion</td>
+                               </tr>
+                           </tbody>
                        </table>
                    </div>
                    <div class="divFooter">
@@ -35,11 +36,11 @@
                 <div class="productos">
                     <div class="divHeader">
                         <!-- Resultado de la compra -->
-                       <p id="totalResult" class="big bold right">00.00€</p>
+                       <p id="totalResult" class="big right blue transbackground">00.00€</p>
                    </div>
                    <div class="searchProduct">
-                       <input class="bold medium" type="text" name="search" placeholder="Buscar productos..."/>
-                       <input class="bold medium" type="button" value="Buscar" id="searchProductBtn"/>
+                       <input class="bold medium" type="text" name="search" placeholder="Search for products..."/>
+                       <input class="bold medium" type="button" value="Search" id="searchProductBtn"/>
                    </div>
                    <div class="divBodyPro" id="productBox">
                        <!-- Imprimir productos aquí -->
@@ -51,7 +52,7 @@
                    </div>
                    <div class="divFooter" id="familias">
                        <!-- Imprimir categorías -->
-                       <div class="changeCat bold"><a data-id="0">Todos</a></div>
+                       <div class="changeCat bold"><a data-id="0">All</a></div>
                        <!--<div>-->
                        <!--    <a href="#">Pan</a>-->
                        <!--</div>-->
@@ -80,11 +81,14 @@
         <!-- Permanecerá en display: none; hasta que se active por jQuery. -->
         <div id="modalEdit" class="modal">
             <!-- Contenido -->
-            <div class="modal-content">
+            <div class="modal-content" id="modaltpv">
                 <div class="close"><i class="fa fa-times"></i></div>
             </div>
         </div>
     <!--ventana modal-->
+    
+    <!--mensajes-->
+    <div id="error"></div>
     
     <script type="text/javascript" src="js/jquery.js"></script>
     <!-- He copiado el contenido de family.js a product_tpv.js para usar el manejador en la consulta. -->

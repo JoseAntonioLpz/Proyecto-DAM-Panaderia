@@ -1,31 +1,36 @@
-<section>
-    <form id="form-client" method="post" action=".">
-        <input type="hidden" name="id" value="{{id}}">
-        <input id="name-client" type="text" placeholder="Name*" name="name" value="{{name}}" required>
-        <span class="error"></span>
-        <input id="surname-client" type="text" placeholder="Surname*" name="surname" value="{{surname}}" required>
-        <span class="error"></span>
-        <input id="tin-client" type="text" placeholder="CIF*" name="tin" value="{{tin}}" required>
-        <span class="error"></span>
-        <input id="address-client" type="text" placeholder="Address*" name="address" value="{{address}}" required>
-        <span class="error"></span>
-        <input id="location-client" type="text" placeholder="Location" name="location" value="{{location}}">
-        <span class="error"></span>
-        <input id="postalcode-client" type="text" placeholder="Postal Code" name="postalcode" value="{{postalcode}}">
-        <span class="error"></span>
-        <input id="province-client" type="text" placeholder="Province" name="province" value="{{province}}">
-        <span class="error"></span>
-        <input id="email-client" type="email" placeholder="E-mail" name="email" value="{{email}}">
-        <span class="error"></span>
-        <!--Ruta y acción-->
-        <input type="hidden" name="ruta" value="client">
-        <input type="hidden" name="accion" value="edit_client"> 
-        <input type="submit" value="Edit">
-    </form>
-    
-    <a href="?ruta=client">Cancel</a>
-   </section> 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/client/client.js"></script>
+<section class="memberContainer clients">
+    <div class="fondo">
+        <h1 class="big thin white"><i class="fa fa-users" aria-hidden="true"></i> Edit Client</h1>
+        <form id="form-client" method="post" action="client/edit_client" class="edit_client">
+            <input type="hidden" name="id" value="{{id}}">
+            <input id="name-client" type="text" placeholder="Name*" name="name" value="{{name}}" required>
+            <span class="error"></span>
+            <input id="surname-client" type="text" placeholder="Surname*" name="surname" value="{{surname}}" required>
+            <span class="error"></span>
+            <input id="tin-client" type="text" placeholder="CIF*" name="tin" value="{{tin}}" required>
+            <span class="error"></span>
+            <input id="address-client" type="text" placeholder="Address*" name="address" value="{{address}}" required>
+            <span class="error"></span>
+            <input id="location-client" type="text" placeholder="Location" name="location" value="{{location}}">
+            <span class="error"></span>
+            <input id="postalcode-client" type="text" placeholder="Postal Code" name="postalcode" value="{{postalcode}}">
+            <span class="error"></span>
+            <input id="province-client" type="text" placeholder="Province" name="province" value="{{province}}">
+            <span class="error"></span>
+            <input id="email-client" type="email" placeholder="E-mail" name="email" value="{{email}}">
+            <span class="error"></span>
+            <!--Ruta y acción-->
+            <input type="hidden" name="ruta" value="client">
+            <input type="hidden" name="accion" value="edit_client">
+            <input type="submit" value="Edit" class="btn">
+        </form>
+
+        <a href="?ruta=client" class="btn">Cancel</a>
+    </div>
+</section>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/block.js"></script>
+<script type="text/javascript" src="js/client/client.js"></script>
 </body>
+
 </html>

@@ -45,6 +45,10 @@ class Request{
 		return $valor;
 	}
 	
+	/*static function read($nombre, $strip = true){
+		return strip_tags(self::postget($nombre));
+	}*/
+	
 	static function read($nombre){
 		return self::postget($nombre);
 	}

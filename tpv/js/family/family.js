@@ -3,7 +3,7 @@ $(document).ready(function(){
     $.ajax(
         // Hago la llamada
         {
-            url: 'index.php?ruta=family',
+            url: 'family',
             type: 'get',
             dataType: 'json'
         }

@@ -1,14 +1,18 @@
-<section>
-    <form id="form" action="index.php?accion=doEditUser&ruta=member" method="post">
-        <input id="login" type="text" name="login" value = "{{login}}"/>
-        <input id="clave" type="password" name="clave" placeholder = "Clave"/>
-        <input id="claveRep" type="password" name="claveRep" placeholder = "Clave Repetida"/>
+<section class="memberContainer">
+    <div class="fondo">
+        <h1 class="big thin blue"><i class="fa fa-user" aria-hidden="true"></i> Edit member</h1>
+    <form id="form" action="member/doEditUser" method="post">
+        <input class="medium" id="login" type="text" name="login" value = "{{login}}"/>
+        <input class="medium" id="clave" type="password" name="clave" placeholder = "Pass"/>
+        <input class="medium" id="claveRep" type="password" name="claveRep" placeholder = "Pass again"/>
         <input type="hidden" name="id" value="{{id}}"/>
-        <input type="submit" value="Registrar"/>
+        <input class="medium btn" type="submit" value="Save"/>
     </form>
-    <a href="index.php?accion=listmember&ruta=member">Volver</a>
+    <a href="member/listmember" class="btn">Go back</a>
+    </div>
 </section>    
     <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/block.js"></script>
     <script type="text/javascript" src="js/member/editMember.js"></script>
 </body>
 </html>

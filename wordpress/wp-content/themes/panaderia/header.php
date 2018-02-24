@@ -6,5 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bakery</title>
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
+    
+    <?php
+        wp_enqueue_script('jquery');
+        wp_head();
+    ?>
 </head>
 <body>
+    <a name="top"></a>

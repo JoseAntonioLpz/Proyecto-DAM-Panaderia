@@ -229,17 +229,17 @@ $(document).ready(function(){
     //pide confirmación para borrar un cliente
     $('.actions .remove-client').on('click',removeConfirm);
     
-    //más adelante confirmar en una ventana modal en condiciones
+    
     function removeConfirm(e){
         e.preventDefault();
         
-        $(".blur").css('filter', 'blur(10px)')
+        $(".blur").css('filter', 'blur(10px)');
         $("#modalEdit").css('display', 'block');
         
         var message = $('<h3>¿Are you sure to remove this client?</h3>');
         var bts = $('<div class="actions">'+
                             '<a class="bt-action confirm" href="' + $(this).attr('href') + '"><i class="fa fa-check"></i></a>'+
-                            '<a class="bt-action remove close" href="#"><i class="fa fa-times"></i></a>'+
+                            '<a class="bt-action remove close"><i class="fa fa-times"></i></a>'+
                     '</div>');
         $('.modal-content').append(message);
         $('.modal-content').append(bts);
@@ -255,7 +255,7 @@ $(document).ready(function(){
     
     //función que añade campos al formulario para insertar varios clientes a la vez
     $('#add_more').on('click',function(){
-        var fields = '<hr><div class="fields">' + 
+        var fields = '<div class="fields">' + 
                         '<input class="name-client" type="text" placeholder="Name*" name="name[]" required> ' +
                         '<span class="error"></span>' +
                         '<input class="surname-client" type="text" placeholder="Surname*" name="surname[]" required>' +
@@ -272,9 +272,9 @@ $(document).ready(function(){
                         '<span class="error"></span>' + 
                         '<input class="email-client" type="email" placeholder="E-mail" name="email[]">' +
                         '<span class="error"></span>' +
-                        '<a class="rm_field" href="#">delete field</a></div>';
+                        '<a class="rm_field btnDelete">Delete</a></div>';
         
-        $('#insert_client_submit').before(fields);
+        $('#form-client').append(fields);
         
         //manejador de eventos para boton quitar campos
         $('.rm_field').on('click',removeField);
@@ -282,7 +282,6 @@ $(document).ready(function(){
     
     function removeField(e){
         e.preventDefault();
-        $(this).parent('.fields').prev().remove();
         $(this).parent('.fields').remove();
     }
 });

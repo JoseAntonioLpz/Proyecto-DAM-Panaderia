@@ -10,6 +10,7 @@ class Controlador {
     function __construct(Modelo $modelo) {
         $this->modelo = $modelo;
         $this->sesion = new Session(Constant::SESSION);
+        $this->getModel()->setDato('base', Constant::BASE);
         if($this->isLogged()) {
             $usuario = $this->getUser();
             $this->getModel()->setDato('usuario', $usuario->getLogin());
@@ -42,10 +43,10 @@ class Controlador {
     // Sobreescribir este método en todos los herederos
     function index(){
         if($this->isLogged()){
-            $archivo = Util::includeTemplates('templates/home_loged.html');
-            if($this->getUser()->getId() == '1'){
+            //$archivo = Util::includeTemplates('templates/home_loged.html');
+            //if($this->getUser()->getId() == '1'){
                 $archivo = Util::includeTemplates('templates/home_loged_admin.html');
-            }
+            //}
             $this->getModel()->setDato('archivo' , $archivo);
         }else{
             $archivo = Util::includeTemplates('templates/first_page.html');
@@ -60,7 +61,7 @@ class Controlador {
             if($cantidad == null){
                 $cantidad = 1;
             }
-            $this->getSession()->set('idTicket', Request::read('idTicket'));
+            //$this->getSession()->set('idTicket', Request::read('idTicket'));
             
             $product = $this->getModel()->getProduct($id_product);
             
@@ -118,6 +119,9 @@ class Controlador {
     function reiniciarCarro(){
         $this->getSession()->setCarro();
         $carro = $this->getSession()->getCarro();
-        $this->getModel()->setDato('data' , $carro->getCarrito());
+        //$this->getSession()->set('idTicket', Request::read('id'));
+        $this->getModel()->setDato('data' , $carro->getCarrito()); 
+        
     }
+        
 }

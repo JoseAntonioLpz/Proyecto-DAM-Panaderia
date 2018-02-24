@@ -16,7 +16,9 @@ class ControladorTicket extends Controlador{
             $ticket = new Ticket(0 , date("Y-m-d H:i:s"), $this->getUser()->getId(), $idClient);
             $idTicket = $this->getModel()->insertTicket($ticket);
             $res = array('id' => $idTicket);
-            $this->getModel()->setDato('data' , $res);
+            $this->getSession()->set('idTicket', $idTicket);
+            $this->getModel()->setDato('idTicket', $idTicket);
+            //$this->getModel()->setDato('data' , $res);
         }else{
             
         }
@@ -100,6 +102,20 @@ class ControladorTicket extends Controlador{
             }
         }else{
             $this->getModel()->setDato('archivo' , Util::includeTemplates('templates/first_page.html'));
+        }
+    }
+    
+    function searchTicket(){
+        if($this->isLogged()){
+            $criterio = Request::read('criterio');
+            if(Filter::isDate($criterio)){
+                $tickets = $this->getModel()->search('date', $criterio);
+            }else{
+                $tickets = $this->getModel()->search('text', $criterio);
+            }
+            $this->getModel()->setDato('data' , $tickets);
+        }else{
+            $this->getModel()->setDato('data' , '');
         }
     }
 }

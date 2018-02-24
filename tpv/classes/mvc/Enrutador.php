@@ -32,6 +32,7 @@ class Enrutador {
         $this->rutas['tpv'] = new Ruta('Modelo' , 'Vista' , 'ControladorTpv');
         
         $this->rutas['carrito'] = new Ruta('ModeloProduct' , 'VistaAjax' , 'Controlador');
+        $this->rutas['wp'] = new Ruta('ModeloWp' , 'VistaAjax' , 'ControladorWp');
     }
 
     function getRoute($ruta) {

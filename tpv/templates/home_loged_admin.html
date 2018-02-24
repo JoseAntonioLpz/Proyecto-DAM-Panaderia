@@ -1,9 +1,51 @@
-<section>    
-    <a href="index.php?accion=dologout&ruta=member">Logout</a>
-    <a href="index.php?accion=listmember&ruta=member">Miembros</a>
-    <a href="index.php?accion=index&ruta=client">Clientes</a>
-    <a href="index.php?accion=index&ruta=product">Productos</a>
-    <a href="index.php?ruta=tpv">Tpv</a>
-</section>    
+<section> 
+    <div class="dashboardContainer">
+        <!--<a href="index.php?accion=dologout&ruta=member">Logout</a>-->
+        <span class="big">Important info
+            <p class="small">
+                We recomend to use the application in fullscreen mode (F11).<br>
+                You can block the TPV in any screen by clicking the above button "Block". 
+                The password is the same as your login.<br>
+                Image uploads are limited to 2MB. The images don't need any crop to fix in the boxes.<br>
+            </p>
+        </span>
+        <a href="tpv" class="big">TPV
+            <p class="small">
+                Sale zone.
+                Search for tickets and products, categorize products and quickly manage the sale.
+                See the product's description by moving the mouse over it and waiting.
+            </p>
+        </a>
+        <a href="member/listmember" class="big">Members
+            <p class="small">
+                Member zone. Enabled only for the boss.
+                Sign new members in the bakery and edit their profile.
+            </p>
+        </a>
+        <a href="client/index" class="big">Clients
+            <p class="small">
+                Clients management zone. 
+                Sign new clients and edit ther information.
+                Multiple insertion if needed.
+            </p>
+        </a>
+        <a href="product/index" class="big">Products
+            <p class="small">
+                Products management zone. 
+                Create, edit and delete all the stock.
+                Multiple insertion if needed. Delete within the countdown to speed up the process.
+            </p>
+        </a>
+        <a href="ticket/ticketTemplate" class="big">Tickets
+            <p class="small">
+                Tickets management zone. 
+                Show or delete ticket's details. Clean empty tickets from unfinished sales.
+                Sort rows by field. Search by text or date.
+                
+            </p>
+        </a>
+    </div>
+</section> 
+    <script type="text/javascript" src="js/block.js"></script>   
 </body>
 </html>

@@ -162,4 +162,67 @@ class ManagerTicket implements Manager{
         return $res;
     }
     
+    function searchDate($criterio){
+        $sql = "select t.id, t.date, m.login, c.name, c.surname, c.tin, c.id from ticket t 
+        join member m on m.id = t.idmember left join client c on c.id = t.idclient where t.date like :date order by t.date"; //DESC limit :a , :b;";
+        $params = array(
+            //'a' => array($a, PDO::PARAM_INT),
+            //'b' => array($b, PDO::PARAM_INT),
+            'date' => '%' . $criterio . '%'
+            /*'order' => array($order, PDO::PARAM_STR)*/
+        );
+        $res = $this->db->execute($sql, $params);
+        $join = array();
+        $sentencia = $this->db->getStatement();
+        
+        if($res){
+            while($fila = $sentencia->fetch()){
+                //echo Util::varDump($fila);
+                $join[] = array(
+                    'id' => $fila[0],
+                    'date' => $fila[1],
+                    'login' => $fila[2],
+                    'name' => $fila[3],
+                    'surname' => $fila[4],
+                    'tin' => $fila[5],
+                    'id_client' => $fila[6]
+                );
+            }
+        }
+        return $join;
+    }
+    
+    function search($criterio){
+        $sql = "select t.id, t.date, m.login, c.name, c.surname, c.tin, c.id from ticket t 
+        join member m on m.id = t.idmember left join client c on c.id = t.idclient 
+        where m.login like :login OR  c.name like :name OR c.surname like :surname OR c.tin like :tin
+        order by t.date";
+        
+        $params = array(
+            'login' => '%' . $criterio . '%',
+            'name' => '%' . $criterio . '%',
+            'surname' => '%' . $criterio . '%',
+            'tin' => '%' . $criterio . '%',
+        );
+        $res = $this->db->execute($sql, $params);
+        $join = array();
+        $sentencia = $this->db->getStatement();
+        
+        if($res){
+            while($fila = $sentencia->fetch()){
+                //echo Util::varDump($fila);
+                $join[] = array(
+                    'id' => $fila[0],
+                    'date' => $fila[1],
+                    'login' => $fila[2],
+                    'name' => $fila[3],
+                    'surname' => $fila[4],
+                    'tin' => $fila[5],
+                    'id_client' => $fila[6]
+                );
+            }
+        }
+        return $join;
+    }
+    
 }

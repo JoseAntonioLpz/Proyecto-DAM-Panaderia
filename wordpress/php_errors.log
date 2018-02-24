@@ -1,0 +1,16 @@
+[23-Feb-2018 13:08:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ubuntu/workspace/wordpress/wp-config.php on line 105
+[23-Feb-2018 13:08:57 UTC] PHP Stack trace:
+[23-Feb-2018 13:08:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:0
+[23-Feb-2018 13:08:57 UTC] PHP   2. require_once() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:22
+[23-Feb-2018 13:08:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ubuntu/workspace/wordpress/wp-config.php on line 105
+[23-Feb-2018 13:08:57 UTC] PHP Stack trace:
+[23-Feb-2018 13:08:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:0
+[23-Feb-2018 13:08:57 UTC] PHP   2. require_once() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:22
+[23-Feb-2018 13:10:26 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ubuntu/workspace/wordpress/wp-config.php on line 105
+[23-Feb-2018 13:10:26 UTC] PHP Stack trace:
+[23-Feb-2018 13:10:26 UTC] PHP   1. {main}() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:0
+[23-Feb-2018 13:10:26 UTC] PHP   2. require_once() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:22
+[23-Feb-2018 13:10:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ubuntu/workspace/wordpress/wp-config.php on line 105
+[23-Feb-2018 13:10:57 UTC] PHP Stack trace:
+[23-Feb-2018 13:10:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:0
+[23-Feb-2018 13:10:57 UTC] PHP   2. require_once() /home/ubuntu/workspace/wordpress/wp-admin/admin-ajax.php:22

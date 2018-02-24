@@ -16,7 +16,7 @@ class ControladorClient extends Controlador{
                 $page = 1;
             }
     
-            $pagination = new Pagination($rows,$page,3);
+            $pagination = new Pagination($rows,$page,10);
             
             $rpp = $pagination->getRpp();
             $offset = $pagination->getOffset();
@@ -38,17 +38,17 @@ class ControladorClient extends Controlador{
             $this->getModel()->setDato('archivo' , $html);
             
             $trClient = '<tr>
-                            <td>{{name}}</td>
-                            <td>{{tin}}</td>
-                            <td>{{address}}</td>
-                            <td>{{postalcode}} {{location}}</td>
-                            <td>{{province}}</td>
-                            <td>
+                            <th class="medium">{{name}}</th>
+                            <th class="medium">{{tin}}</th>
+                            <th class="medium">{{address}}</th>
+                            <th class="medium">{{postalcode}} {{location}}</th>
+                            <th class="medium">{{province}}</th>
+                            <th class="medium">
                                 <div class="actions">
-                                        <a class="bt-action edit" href="?ruta=client&accion=edit_client_template&idClient={{id}}"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a class="bt-action remove remove-client" href="?ruta=client&accion=remove_client&idClient={{id}}"><i class="fa fa-times"></i></a>
+                                        <a class="bt-action edit" href="client/edit_client_template&idClient={{id}}">Edit</a>
+                                        <a class="bt-action remove remove-client" href="client/remove_client&idClient={{id}}">Remove</a>
                                 </div>
-                            </td>
+                            </th>
                          </tr>';
             //$clients = $this->getModel()->getAll();
             $clients = $this->getModel()->getAllLimit($offset, $rpp);
@@ -61,10 +61,10 @@ class ControladorClient extends Controlador{
             
             //paginacion
             $btNext = '
-                                <a href="?ruta=client&page=' . $sig . '">Next</a>
+                                <a href="client&page=' . $sig . '">Next</a>
                        ';
             $btPrev = '
-                                <a href="?ruta=client&page=' . $ant . '">Prev</a>
+                                <a href="client&page=' . $ant . '">Prev</a>
                        ';
             $this->getModel()->setDato('next',$btNext);
             $this->getModel()->setDato('prev',$btPrev);
@@ -72,11 +72,11 @@ class ControladorClient extends Controlador{
             $todo2 = '';
             foreach($rango as $pagina){
                     $btPagina = '
-                                    <a href="index.php?ruta=client&page=' . $pagina . '">' . $pagina . '</a>
+                                    <a href="client&page=' . $pagina . '">' . $pagina . '</a>
                                  ';
                     if($pagina == $page){
                        $btPagina = '
-                                        <a class="active" href="index.php?ruta=client&page=' . $pagina . '">' . $pagina . '</a>
+                                        <a class="active" href="client&page=' . $pagina . '">' . $pagina . '</a>
                                     '; 
                     }
                     
@@ -112,7 +112,7 @@ class ControladorClient extends Controlador{
                 echo $r;
             }
             
-            header('Location: ?ruta=client&op=insertarCliente&res=' . $r);
+            header('Location: client&op=insertarCliente&res=' . $r);
             exit();
         }else{
             $this->index();
@@ -136,7 +136,7 @@ class ControladorClient extends Controlador{
                 $res .= $this->getModel()->insertClientBD($client);
             }
             
-            header('Location: ?ruta=client&op=insertarClientes&res=' . $r);
+            header('Location: client&op=insertarClientes&res=' . $r);
             exit();
         }else{
             $this->index();
@@ -150,7 +150,7 @@ class ControladorClient extends Controlador{
             if($client !== null){
                 $r = $this->getModel()->removeClientBD($client->getId());
             }
-            header('Location: ?ruta=client&op=borrarCliente&res=' . $r);
+            header('Location: client&op=borrarCliente&res=' . $r);
             exit();
         }else{
             $this->index();
@@ -175,7 +175,7 @@ class ControladorClient extends Controlador{
             $clientEdit = new Client();
             $clientEdit->read();
             $r = $this->getModel()->editClient($clientEdit);
-            header('Location: ?ruta=client&op=editarCliente&res=' . $r);
+            header('Location: client&op=editarCliente&res=' . $r);
             exit();
         }else{
             $this->index();

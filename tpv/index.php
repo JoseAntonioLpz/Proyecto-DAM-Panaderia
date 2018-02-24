@@ -6,8 +6,19 @@ ini_set("display_errors", 1);
 header('Content-Type: text/html; charset=utf-8');
 require 'classes/AutoLoad.php';
 
-$ruta = Request::read("ruta");
-$accion = Request::read("accion");
+// $ruta = Request::read("ruta");
+// $accion = Request::read("accion");
+
+$accion = '';
+$ruta = '';
+$urlParams = Request::read('urlparams');
+$parametros = explode('/', $urlParams);
+if(isset($parametros[0])) {
+    $ruta = $parametros[0];
+}
+if(isset($parametros[1])) {
+    $accion = $parametros[1];
+}
 
 $frontController = new ControladorFrontal($ruta);
 

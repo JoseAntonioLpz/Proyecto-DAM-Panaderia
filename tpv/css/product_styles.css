@@ -1,21 +1,10 @@
 .block{
-    width: 80%;
+    flex: 1 0 85%;
     background-image: url(../img/background1.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    overflow: auto;
-    padding: 20px;
-}
-
-.block h1{
-    color: white;
-}
-
-.block a{
-    color: white;
-    padding: 5px;
-    
+    padding: 25px 100px 40px;
 }
 
 /* Caja del modal, se eleva sobre el resto de la página y se centra. */
@@ -69,20 +58,48 @@
 }
 
 .contBox{
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .contBox .pagBefore, .contBox .pagAfter{
-    height: 40px;
-    flex: 1;
-    background: rgba(255, 255, 255, .8);
-    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    font-size: 3em;
     border-radius: 2px;
+    background-color: rgba(255, 255, 255, .7);
+    flex: 1;
+    opacity: .7;
+    text-decoration: none;
+    color: var(--color-dark);
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
 }
+
+.contBox .pagBefore:hover, .contBox .pagAfter:hover{
+    transform: scale(1.3, 1.3);
+    color: white;
+    opacity: 1;
+    background-color: var(--color-dark);
+}
+.contBox .pagBefore:active, .contBox .pagAfter:active{
+    transform: scale(1, 1);
+}
+
+/*.contBox .pagBefore, .contBox .pagAfter{*/
+/*    flex: 1;*/
+/*    background: rgba(255, 255, 255, .8);*/
+/*    cursor: pointer;*/
+/*    border-radius: 2px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
 /* Queda bastante feo cuando una de las filas es de elementos impares
 y todo se estira y desfigura. Hay que procurar que las filas siempre tengan 
@@ -103,7 +120,6 @@ un número par de elementos.*/
 
 .pbox {
     flex: 1 0 300px;
-    border: 2px solid #eee;
     margin: 10px;
     padding: 10px;
     border-radius: 2px;
@@ -225,6 +241,12 @@ un número par de elementos.*/
     filter: FlipV;
     display: flex;
 }
+.loadbox.mini {
+    position: absolute;
+    right: 10px;
+    bottom: 100px;
+    transform: scale(-.8, -.8);
+}
 
 .loading {
     margin: 0px 5px 0px;
@@ -272,6 +294,7 @@ un número par de elementos.*/
     display: flex;
     flex-flow: column wrap;
     padding: 10px;
+    position: relative;
 }
 
 .modal form input,
@@ -293,3 +316,177 @@ un número par de elementos.*/
 .error{
     color: #f03434;
 }
+
+#newProducts {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    padding: 0 auto;
+    flex-wrap: wrap;
+}
+
+#newProducts .newProductContainer{
+    flex: 0 1 300px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #eee;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#newProducts .newProductButtons{
+    flex: 100%;
+}
+
+#newProducts .newProductContainer:not:first-child{
+}
+
+
+.btnEdit, .btnDelete {
+    padding: 10px 15px 10px 15px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    opacity: .8;
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);*/
+    transition: .2s all ease-in-out;
+}
+
+.btnEdit:hover, .btnDelete:hover {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+}
+
+.btnEdit:active, .btnDelete:active{
+    opacity: 1;
+    transform: scale(.9, .9);
+}
+
+.btnEdit {
+    cursor: pointer;
+    color: var(--color-blue);
+    border: 2px solid var(--color-blue);
+}
+
+.btnEdit:hover {
+    color: white;
+    background-color: var(--color-blue);
+}
+
+.btnDelete {
+    cursor: pointer;
+    color: var(--color-red);
+    border: 2px solid var(--color-red);
+    -moz-user-select: none; /* Firefox */
+    user-select: none;
+}
+
+input, textarea, select{
+    border: none;
+    border-radius: 2px;
+    margin: 5px 0px 5px; 
+}
+
+
+/* Estilar examinador de archivos */
+.styleImage {/* Ocultar input */
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.styleImage + label {
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 2px;
+    color: white;
+    background-color: var(--color-dark);
+    display: flex;
+    transition: .2s all ease-in-out;
+}
+
+.styleImage:focus + label,
+.styleImage + label:hover {
+    padding-left: 20px;
+}
+.styleImage + label p{
+    margin: 0;
+    padding: 10px;
+}
+.styleImage + label p::after{
+    content: " >";
+    opacity: 0;
+    transition: .2s all ease-in-out;
+}
+.styleImage + label p:hover::after{
+    content: " >";
+    opacity: 1;
+}
+
+.styleImage + label span{
+    color: var(--color-dark);
+    padding: 10px;
+    flex: 1;
+    border: 2px solid var(--color-dark);
+    border-radius: 0 2px 2px 0;
+    background-color: white;
+}
+
+.ghost{
+    visibility: hidden;
+}
+
+/* Con los errores se mostrarán unas tostadas desde abajo. */
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#error {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#error.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 

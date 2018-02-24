@@ -36,22 +36,31 @@ class ControladorProduct extends Controlador {
             $products = Request::read('product');
             $prices = Request::read('price');
             $descriptions = Request::read('description');
-            $images = $_FILES['img']['tmp_name'];
-            echo Util::varDump($images);
             $res = array();
             $r = "";
-            for ($i = 0; $i < count($products) ; $i++){
+            $cpni = 0;
+            foreach($products as $i => $product ) {
                 $product = new Product(null, $idfamilies[$i], $products[$i], $prices[$i], $descriptions[$i]);
-                $res[] = $this->getModel()->insertProduct($product);
+                $ok = $product->verify();
+                if ($ok){
+                    $res[$i] = $this->getModel()->insertProduct($product);
+                }else{
+                    $cpni++;
+                }
             }
+            $cins = 0;
             foreach ($_FILES["img"]["error"] as $key => $error) {
-                if ($error == UPLOAD_ERR_OK) {
+                $upl[$key] = false;
+                if ($error == UPLOAD_ERR_OK && $res[$key] > 0) {
                     $name_tmp = $_FILES["img"]["tmp_name"][$key];
                     $name = $res[$key];
-                    $r .= move_uploaded_file($name_tmp, '../../img/product/'.$name);
+                    if(!move_uploaded_file($name_tmp, '../../img/product/'.$name)) {
+                        $cins++;
+                    }
                 }
-            }   
-            header('Location: ?ruta=product&op=Insert_products&res='.$res.'&img='.$r);
+            }
+            //echo Util::varDump($r);
+            header('Location: product&op=Insert_products&res='.$cpni.'&img='.$cins);
             exit();
         }else{
             $this->index();
@@ -96,8 +105,10 @@ class ControladorProduct extends Controlador {
         $idfamily = Request::read('idfamily');
         $text = Request::read('text');
         $page = Request::read('page');
+        $limit = Request::read('limit');
+        if (!isset($limit)){ $limit = 9; }
         if ($this->isLogged()){
-            $products = $this->getModel()->getAllProductsJson($idfamily, $text, $page);
+            $products = $this->getModel()->getAllProductsJson($idfamily, $text, $page, $limit);
             $this->getModel()->setDato('list', $products);
         }else{
             $this->index();
@@ -138,7 +149,15 @@ class ControladorProduct extends Controlador {
     function index() {
         $op = Request::read('op');
         $res = request::read('res');
-        $this->getModel()->setDato('mensaje', $op . ' ' . $res);
+        $img = request::read('img');
+        $msg = "";
+        if ($res > 0){
+            $msg .= "Error adding the products. ";
+        }
+        if ($img > 0){
+            $msg .= "Error uploading the images.";
+        }
+        $this->getModel()->setDato('mensaje', $msg);
         if($this->isLogged()) {
             $html = Util::includeTemplates('templates/product/_product_list.html');
             $this->getModel()->setDato('archivo', $html);
@@ -172,22 +191,18 @@ class ControladorProduct extends Controlador {
     
     function showImage(){
         $id = Request::read('id');
-        if($this->isLogged()) {
-            header('Content-type: image/*');
-            $file = '../../img/product/'.$id;
-            if (!file_exists($file)){
-                $file = '../../img/product/0';
-            }
-            readfile($file);
-            exit();
-        }else{
-            $this->index();
+        header('Content-type: image/*');
+        $file = '../../img/product/'.$id;
+        if (!file_exists($file)){
+            $file = '../../img/product/0';
         }
+        readfile($file);
+        exit();
     }
     
     function uploadImg(){
         $id = Request::read('id');
-        $msgImage = "Error, la imagen no se pudo guardar.";
+        $msgImage = "Error, the image couldn't be saved.";
         if (isset($_FILES["image"])){
             $file = $_FILES["image"];
             $nombre = $file["name"];
@@ -197,15 +212,17 @@ class ControladorProduct extends Controlador {
             $carpeta = "../../img/product/";
             
             if ($tipo != 'image/jpg' && $tipo != 'image/jpeg' && $tipo != 'image/png' && $tipo != 'image/gif'){
-              $msgImage = "Error, el archivo no es una imagen.";
-            }else if ($size > 2 * 1024 * 1024){
-              $msgImage = "Error, el tamaño máximo permitido es 2MB.";
-            }else{
+                $msgImage = "Error, the file is not a image.";
+            }
+            if ($size > 2 * 1024 * 1024){
+                $msgImage = "Error, the image is too large.";
+            }
+            if(!isset($msgImage)){
                 if($this->isLogged()) {
                     $ruta_destino = "../../img/product/".$id; // Nombra la ruta de la imagen
                     $res = move_uploaded_file($ruta_provisional,$ruta_destino) ; // Sube la imagen
                     if ($res){
-                        $msgImage = "Imagen guardada con éxito.";
+                        $msgImage = "Image saved.";
                     }
                 }else{
                     $this->index();
@@ -213,5 +230,29 @@ class ControladorProduct extends Controlador {
             }
         }
         $this->getModel()->setDato('msgimage', $msgImage);
+    }
+    
+    function obtainProductWP(){
+        $page = Request::read('p');
+        $rows = $this->getModel()->getCount();
+        if($page === null || $page === ''){
+            $page = 1;
+        }
+        $pagination = new Pagination($rows , $page , 16);
+        
+        $a = $pagination->getOffset();
+        $b = $pagination->getRpp();
+        
+        $res = $this->getModel()->getAllFromWP($a, $b);
+        
+        $pages = array(
+            'first' => $pagination->getFirst(),
+            'last' => $pagination->getLast(),
+            'next' => $pagination->getNext(), 
+            'previous' => $pagination->getPrevious(),
+            'range' => $pagination->getRange(5)
+        );
+        $this->getModel()->setDato('data' , $res);
+        $this->getModel()->setDato('paginacion' , $pages);
     }
 }

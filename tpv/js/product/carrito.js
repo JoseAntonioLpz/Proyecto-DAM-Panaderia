@@ -23,7 +23,7 @@ $(document).ready(function(){
     
     function verCarrito(){
         $.ajax({
-            url: 'index.php?accion=verCarro&ruta=carrito',
+            url: 'carrito/verCarro',
             type: 'post',
             dataType: 'json',
             
@@ -34,7 +34,7 @@ $(document).ready(function(){
                 var tr = $('<tr class="ticket-detail">'+
                                 '<td class="quantity">'+ val.cantidad +'</td>'+
                                 '<td class="idproduct">'+ val.id +'</td>'+
-                                '<td class="nameproduct" title="' + val.item.product + '">'+ /*desc_excerpt(*/val.item.product/*)*/ +'</td>'+
+                                '<td class="nameproduct" title="' + val.item.product + '">'+ desc_excerpt(val.item.product) +'</td>'+
                                 '<td class="pvp">'+ val.item.price +'</td>'+
                                 '<td class="price">'+ totalPrice +'</td>'+
                                 '<td class="fa fa-plus plus"></td>' +

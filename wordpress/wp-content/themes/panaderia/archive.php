@@ -1,7 +1,5 @@
 <?php
 get_header();
-echo get_template_part('nav');
-
 
 if(is_category()){
   $title = 'Category Archives: ' . single_cat_title('',false);
@@ -28,29 +26,67 @@ if(have_posts()){
     $resultado = 'NO POST FOUND';
 }
 
-echo $title . '<br>' . $resultado;
+//echo $title . '<br>' . $resultado;
 
 
 global $sw;
 $sw = 0;
 ?> 
-
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>Post title</th>
-            <th>Author</th>
-            <th>Published on</th>
-        </tr>
-        <?php get_template_part('content','list') ?>
-    </table>
+<header class="header-nofront">
+    <?php echo get_template_part('nav'); ?>
+    <div id="relleno"></div>
+    <div class="lema">
+        <div class="frase">
+            <?php echo $title;?><div class="subfrase"><?php echo $resultado; ?></div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row archive"> <!-- archive -->
+        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th><?php _e('Post title'); ?></th>
+                            <th><?php _e('Author'); ?></th>
+                            <th><?php _e('Published on'); ?></th>
+                        </tr>
+                    </thead>
+                  
+                    <?php
+                    $args = array(
+                        'post_type' => array('post','specials_product'),    
+                    );
+                    
+                    //$query = new WP_Query($args);
+                    while(have_posts()){
+                        the_post();
+                        get_template_part('content','list');
+                    }
+                    //wp_reset_query();
+                    ?>
+                </table>
+            </div>
+            
+            <?php
+            the_posts_pagination(array(
+                'prev_text'=> 'Prev',
+                'next_text'=> 'Next',
+                'before_page_number'=>'<span></span>'
+            ));
+            ?>
+            
+        </div>
+        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-4">
+            <?php //echo get_template_part('sidebar2');
+                get_sidebar('archive');
+            ?>
+        </div>
+        <!--<div class="col-md-1"></div>-->
+    </div>
 </div>
-<?php
-the_posts_pagination(array(
-    'prev_text'=>'Prev',
-    'next_text'=>'Next',
-    'before_page_number'=>'<span></span>'
-));
-?>
 <?php
 get_footer();

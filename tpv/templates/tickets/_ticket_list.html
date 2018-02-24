@@ -1,18 +1,23 @@
 <link rel="stylesheet" href="css/style-client-list.css">
-<section>
+<section class="memberContainer tickets">
     <div class="fondo">
+        <h1 class="big thin blue"><i class="fa fa-money" aria-hidden="true"></i> Tickets</h1>
+        <p>
+            <a class="btn bold" id="clean">Clean null tickets</a>
+            <a class="btn bold" id="search">Search tickets</a>
+        </p>
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">
               <thead>
                 <tr>
-                    <th>ID</th>
-                    <th class="order orderSelect" data-order="t.date">Date</th>
-                    <th class="order" data-order="m.member">Miembro</th>
-                    <th class="order" data-order="c.id">ID_Cliente</th>
-                    <th class="order" data-order="c.name">Nombre</th>
-                    <th class="order" data-order="c.surname">Apellidos</th>
-                    <th>DNI</th>
-                    <th>Action</th>
+                    <th class="medium">ID</th>
+                    <th class="order orderSelect medium" data-order="t.date">Date</th>
+                    <th class="order medium" data-order="m.member">Member</th>
+                    <th class="order medium" data-order="c.id">ID Client</th>
+                    <th class="order medium" data-order="c.name">Name</th>
+                    <th class="order medium" data-order="c.surname">Surname</th>
+                    <th class="medium">DNI</th>
+                    <th class="medium">Action</th>
                 </tr>
               </thead>
             </table>
@@ -20,13 +25,13 @@
         <div class="tbl-content">
             <table id="list_ticket" cellpadding="0" cellspacing="0" border="0">
               <tbody>
-                {{client-list}}
+                
               </tbody>
             </table>
         </div>
         <input type="hidden" id="order" value="t.date"/>
-        <nav role="pagination"><div class="pagination" id="paginacion" data-page="1"></div></nav>
-        <a href="#" id="clean">Limpiar tickets</a>
+        <nav role="navigation"><div class="pagination" id="paginacion" data-page="1"></div></nav>
+        
     </div>
     </div>
     </div>
@@ -35,19 +40,97 @@
         <!-- Contenido -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <table id="details_table" border="1">
+            <table id="details_table" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                     <td>Id</td> 	
                     <td>Price</td> 	
                     <td>Quantity</td> 	
                     <td>Product</td>
-                    <td>Borrar</td>
+                    <td>Remove</td>
                 </tr>
             </table>
         </div>
     </div>
     
+    <div id="modalConfirm" class="modal">
+        <!-- Contenido -->
+        <div class="modal-content">
+            <span class="close"><i class="fa fa-times"></i></span>
+            <h3>Are you sure to remove this ticket?</h3>
+            <div class="actions"><button class="bt-action btnEdit" id="confirmBorrar" data-id=""><i class="fa fa-check"></i></button>
+            <button class="bt-action remove close btnDelete"><i class="fa fa-times"></i></button></div>
+        </div>
+    </div>
+    
+    <!--<div id="modalConfirmNull" class="modal">-->
+        <!-- Contenido -->
+    <!--    <div class="modal-content">-->
+    <!--        <span class="close">&times;</span>-->
+    <!--        <p>Are you sure to remove all null tickets?</p>-->
+    <!--        <a id="confirmBorrarNull" href="#" data-id="">Si</a>-->
+    <!--        <a class="close" href="#">No</a>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <!--<div id="modalConfirm" class="modal">-->
+        <!-- Contenido -->
+    <!--    <div class="modal-content">-->
+    <!--        <span class="close">&times;</span>-->
+    <!--        <p>Are you sure to remove this ticket detail?</p>-->
+    <!--        <a id="confirmBorrar" href="#" data-id="">Si</a>-->
+    <!--        <a class="close" href="#">No</a>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <div id="modalSearch" class="modal">
+        <!-- Contenido -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Search by text</h1>
+            <div class="searchProduct">
+                <input class="bold medium" name="search" type="text" id="textSearch" placeholder="Text included..."/> 
+                <input class="bold medium" type="button" id="BText" value="Search"/>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>Search by date</h1>
+            <div class="searchProduct">
+                <input class="bold medium" name="search" type="date" id="dateSearch"/> 
+                <input class="bold medium" type="button" id="BDate" value="Search" />
+                <span></span>
+                <span></span>
+            </div>
+            <br>
+            <div class="tbl-header">
+                <table id="TBbusqueda">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Member</th>
+                        <th>ID Client</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>DNI</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table id="list_ticket_search" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <input type="hidden" id="criterio" value=""/>
+    </div>
+    
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/block.js"></script>
     <script type="text/javascript" src="js/ticket/obtainTickets.js"></script>
+    <script type="text/javascript" src="js/ticket/searchTickets.js"></script>
 </body>
 </html>

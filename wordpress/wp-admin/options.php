@@ -26,6 +26,18 @@ wp_reset_vars(array('action', 'option_page'));
 
 $capability = 'manage_options';
 
+/*if ( isset ($_GET['cambiarIdioma'] )) 
+	{
+		if ( $_GET['cambiarIdioma'] == 'es_ES' ){
+			$CAMBIAR = 'es_ES';
+		}
+	 }else {
+		$CAMBIAR = 'en_EN';
+	}*/
+
+
+
+// $GLOBALS['WPLANG'] = 'es_ES';
 // This is for back compat and will eventually be removed.
 if ( empty($option_page) ) {
 	$option_page = 'options';
@@ -299,4 +311,5 @@ foreach ( (array) $options as $option ) :
 </div>
 
 <?php
+//define ( 'WPLANG', 'es_ES' );
 include( ABSPATH . 'wp-admin/admin-footer.php' );

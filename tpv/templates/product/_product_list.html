@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="css/product_styles.css" />
 <div class="block">
-    <a href="?ruta=product&accion=insertProducts" class="btn">Añadir productos</a>
-    <h1>Lista de productos:</h1>
+    <h1 class="big thin white"><i class="fa fa-tags" aria-hidden="true"></i> Product list</h1>
+    <a href="product/insertProducts" class="btn">Add products</a>
     <div class="contBox">
-        <div id="pagBefore" class="pagBefore"><<</div>
+        <div id="pagBefore" class="pagBefore big"><i class="fa fa-angle-double-left" aria-hidden="true"></i></div>
         <div id="productBox">
             <div class="loadbox">
                 <div class="loading"></div>
@@ -11,9 +11,9 @@
                 <div class="loading"></div>
             </div>
         </div>
-        <div id="pagAfter" class="pagAfter">>></div>
+        <div id="pagAfter" class="pagAfter"><i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
     </div>
-    
+    <div id="error" class="white">{{mensaje}}</div>
 </div>
 </div>
 </div>
@@ -27,11 +27,15 @@
             <input type="hidden" id="id" name="id" />
             <img id="preview">
             <p class="info"></p>
-            <input type="file" id="image" name="image" />
-            <input type="button" class="medium bold" id="editImage" value="Cambiar imagen" />
+            <input type="file" class="styleImage" id="image0" name="image" />
+            <label for="image0" class="medium">
+                <p><i class="fa fa-image" aria-hidden="true"></i> Choose a file </p>
+                <span></span>
+            </label>
+            <input type="button" class="medium bold btnEdit" id="editImage" value="Change image" />
         </form>
         <form method="POST">
-            <h3>Revisa los datos antes de guardarlos.</h3>
+            <h3>Check the fields before sending.</h3>
             <input type="hidden" id="id" name="id" />
             <select id="family" class="medium">
                 {{singleFamilyProduct}}
@@ -39,13 +43,12 @@
             <input type="text" class="medium" id="product" name="product" value="" />
             <input type="text" class="medium" id="price" name="price" value="" />
             <textarea id="description" name="description" value=""></textarea>
-            <input type="button" class="medium bold" id="editProduct" value="Guardar" />
+            <input type="button" class="medium bold btnEdit" id="editProduct" value="Save" />
         </form>
         </div>
     </div>
 
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/block.js"></script>
 <script type="text/javascript" src="js/product/product.js"></script>

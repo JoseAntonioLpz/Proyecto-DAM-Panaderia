@@ -12,4 +12,6 @@ class Constant{
     
     // Nombre de la sesión
     const SESSION = 'breadsessionproject';
+    
+    const BASE = "https://proyecto-daw-joseantoniolpz.c9users.io/tpv/";
 }

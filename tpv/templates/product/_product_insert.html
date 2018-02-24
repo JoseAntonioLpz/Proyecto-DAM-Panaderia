@@ -1,19 +1,27 @@
 <link rel="stylesheet" type="text/css" href="css/product_styles.css" />
 <div class="block">
-    <h1>Productos nuevos</h1>
-    <form id="newProducts" method="POST" action="?ruta=product&accion=doInsertProducts" enctype="multipart/form-data">
-        <input type="file" name="img[]" />
-        <select id="family_1" name="idfamily[]">
-            <!--{{familiesHtmlOptions}}-->
-            {{singleFamilyProduct}}
-        </select>
-        <input type="text" id="product_1" name="product[]" value="" />
-        <input type="text" id="price_1" name="price[]" value="" />
-        <textarea id="description_1" name="description[]" value=""></textarea>
-        <hr>
-        <button type="button" id="oneMoreProduct">Añadir otro</button>
-        <input type="submit" value="Guardar" />
+    <h1 class="thin white">Add products</h1>
+    <form id="newProducts" method="POST" action="product/doInsertProducts" enctype="multipart/form-data">
+        <div class="newProductContainer">
+            <input class="styleImage" type="file" id="image0" name="img[0]" />
+            <label for="image0" class="medium">
+                <p><i class="fa fa-image" aria-hidden="true"></i></p>
+                <span></span>
+            </label>
+            <select id="family_1" name="idfamily[0]" class="medium">
+                {{singleFamilyProduct}}
+            </select>
+            <input type="text" id="product_1" name="product[0]" value="" class="medium" placeholder="Name"/>
+            <input type="text" id="price_1" name="price[0]" value="" class="medium" placeholder="Price"/>
+            <textarea id="description_1" name="description[0]" value="" class="medium" placeholder="Description"></textarea>
+            <button type="button" class="removeNewProduct medium btnDelete">Remove</button>
+        </div>
+        <span class="newProductButtons">
+            <button type="button" id="oneMoreProduct" class="medium btn">Add product</button>
+            <input type="submit" value="Save & send" class="medium btn"/>
+        </span>
     </form>
+    <a href="product" class="btn">Cancel</a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/block.js"></script>

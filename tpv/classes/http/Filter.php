@@ -9,9 +9,10 @@ class Filter {
         }
         return $res;
     }
-
-    static function isDate($value) {
-        return validateDate($value);
+    
+    static function isDate($date, $format = 'Y-m-d'){
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
     }
 
     static function isEmail($value) {

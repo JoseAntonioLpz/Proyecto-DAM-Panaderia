@@ -1,25 +1,24 @@
-<div class="col-md-3">
 <section class="sidebar">
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Search</h3>
+        <h3 class="sidebar-title"><?php _e('Search'); ?></h3>
         <?php get_search_form(); ?>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">TAG CLOUD</h3>
+        <h3 class="sidebar-title"><?php _e('Tag Cloud'); ?></h3>
         <?php 
-        if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('sidebar widget')) : ?>
-        <div class="warning">Sorry, no widgets instaled for this theme. Go to the admin area and drag your widget into the sidebar.</div>
+        if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Widget')) : ?>
+        <div class="warning"><?php _e('Sorry, no widgets instaled for this theme. Go to the admin area and drag your widget into the sidebar.'); ?></div>
         <?php
         endif;
         ?>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Custom post types</h3>
+        <h3 class="sidebar-title"><?php _e('Special products'); ?></h3>
         <?php 
         $args = array(
             'type'=>'postbypost',
             'limit'=>5,
-            'post_type' => 'my_pan'
+            'post_type' => 'specials_product'
         );
         ?>
         <ul class="list-group">
@@ -29,7 +28,7 @@
         </ul>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Last Entries</h3>
+        <h3 class="sidebar-title"><?php _e('Last Entries'); ?></h3>
         <?php 
         $args = array(
             'type'=>'postbypost',
@@ -43,18 +42,18 @@
         </ul>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Archives</h3>
+        <h3 class="sidebar-title"><?php _e('Archives'); ?></h3>
 
         <ul class="list-group">
         <?php wp_get_archives();  ?>
         </ul>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Categories</h3>
+        <h3 class="sidebar-title"><?php _e('Categories'); ?></h3>
         <?php 
         $args = array(
             'title_li'=>'',
-            'show_count'=>true,
+            'show_count'=>false,
             'echo'=>false
         );
         $cats = wp_list_categories($args);
@@ -67,10 +66,10 @@
         </ul>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Authors</h3>
+        <h3 class="sidebar-title"><?php _e('Authors'); ?></h3>
         <?php
         $args = array(
-            'optioncount'=>true,
+            'optioncount'=>false,
             'orderby'=>'post_count',
             'order'=>'ASC',
             'hide_empty'=>false,//muestra los usuarios aunque no hayan escrito post
@@ -86,7 +85,7 @@
         </ul>
     </div>
     <div class="sidebar-section">
-        <h3 class="sidebar-title">Pages</h3>
+        <h3 class="sidebar-title"><?php _e('Pages'); ?></h3>
         <?php
         $args = array(
             'title_li'=>'',
@@ -100,4 +99,3 @@
         </ul>
     </div>
 </section>
-</div>

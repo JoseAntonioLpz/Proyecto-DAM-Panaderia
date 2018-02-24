@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.borrar').on('click', function(e){
-        if(!confirm('¿Estas seguro que desea borrar a este usuario?')){
+        if(!confirm('Do you really want to remove this user?')){
             e.preventDefault();
         }
     })

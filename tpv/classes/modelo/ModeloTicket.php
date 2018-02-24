@@ -47,4 +47,16 @@ class ModeloTicket extends Modelo{
     function clean(){
         return $this->gestor->clean();
     }
+    
+    function search($param, $criterio){
+        switch ($param) {
+            case 'date':
+                return $this->gestor->searchDate($criterio);
+                break;
+            case 'text':
+                return $this->gestor->search($criterio);
+                break;
+        }
+        
+    }
 }

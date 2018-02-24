@@ -4,50 +4,88 @@ $(document).ready(function() {
     
     // Paginacion productos
     var page = 0;
+    // Paginacion familias
+    var cat = 0;
+    // Paginacion busqueda
+    var searching = '';
+    // Elementos por página
+    var limit = 16;
+    
+    
+    var loading = '<div class="loadbox">'+
+                        '<div class="loading"></div>'+
+                        '<div class="loading"></div>'+
+                        '<div class="loading"></div>'+
+                    '</div>';
     /**
     setTimeout(
         function(){
             getAll(0, '');
         }, 2000);
     //*/
-    getAll(0, '', 0);
+    getAll(cat, searching, page, limit);
 
-    function getAll(idfamily, text, page) {
+    function getAll(idfamily, text, page, limit) {
+        
+        $('#productBox').append(loading);
         
         if (page < 1){
             $('#productBox').empty();
         }
 
         $.ajax({
-            url: 'index.php',
+            url: 'product_ajax/getAllProducts',
             type: 'get',
             dataType: 'json',
             data: {
-                ruta: 'product_ajax',
-                accion: 'getAllProducts',
                 idfamily: idfamily,
                 text: text,
-                page: page
+                page: page,
+                limit: limit
             }
         }).done(
             function(json) {
                 console.log(json.list);
                 var list = json.list;
+                
+                $(".loadbox").remove();
+                
                 if (list.length < 1) {
-                    $('#productBox').append("<h2>No se han encontrado productos.</h2>");
+                    $('#productBox').append("<h3>Products not found</h3>");
                 }
                 else {
+                    $(".pbox.ghost").remove();
                     $("#loadmore").remove();
+                    var counter = 0;
                     for (var i in list) {
                         var product = list[i];
                         createProduct(product);
                     }
+                    var previous = $(".pbox").length;
+                    console.log(previous);
+                    var multipleFound = false;
+                    var nearest = previous;
+                    while(!multipleFound){
+                        var n = nearest % 4;
+                        if (n == 0){
+                            multipleFound = true;
+                        }else{
+                            nearest++;
+                        }
+                    }
+                    
                     var loadmore = $('<div id="loadmore" class="bold">Load more</div>');
                     $('#productBox').append(loadmore);
                     $("#loadmore").click(function() {
                         page = page + 9;
-                        getAll(0, null, page);
+                        getAll(cat, searching, page, limit);
                     });
+
+                    var nGhosts = nearest - previous;
+                    for (var i = 0; i < nGhosts; i++){
+                        createGhost();
+                    }
+                    
                 }
             }
         ).fail(
@@ -58,6 +96,13 @@ $(document).ready(function() {
         );
     }
     
+    function createGhost(){
+        $('#loadmore').remove();
+        var div = $('<div class="pbox ghost">' +
+            '</div>');
+        $('#productBox').append(div);
+    }
+    
     function createProduct(product) {
         var id = product.id;
         var idfamily = product.idfamily;
@@ -66,7 +111,7 @@ $(document).ready(function() {
         var description = product.description;
 
         var div = $('<div class="pbox" data-id="' + id + '" data-name="' + name + '" data-price="' + price + '">' +
-            '<div class="pimg" style="background-image: url(?ruta=product&accion=showImage&id=' + id + ');">' +
+            '<div class="pimg" style="background-image: url(product/showImage?id=' + id + ');">' +
             '<div title="' + description + '">' +
             '<h3>' + name + '</h3>' +
             '</div>' +
@@ -85,6 +130,13 @@ $(document).ready(function() {
         $("#modalEdit").css('display', 'none');
     });
     
+    // Cierra el modal cuando click fuera
+    $("#modalEdit").click(function(e) {
+        if (e.target.id == "modalEdit"){
+            $(".blur").css('filter', 'blur(0px)')
+            $("#modalEdit").css('display', 'none');
+        }
+    });
     
     var miInterval = null;
     function mouseDOWN(){//con esta función cuento el tiempo que el usuario pulsa el producto
@@ -105,19 +157,41 @@ $(document).ready(function() {
         $(".blur").css('filter', 'blur(10px)');
         $("#modalEdit").css('display', 'block');
         
+        $('.modal-content').addClass('modal-apuntar');
+        $('.close').addClass('apuntar');
+        
         //dibujo formulario para introducir cantidad
-        var inputCant = $('<input type="number" name="cant" id="cant" placeholder="Quantity">');
+        /*var inputCant = $('<input type="number" name="cant" id="cant" placeholder="Quantity" min="1">');
         var btCant = $('<button id="writeCant">OK</button>');
         var btClose = $('.close');
         btClose.siblings().remove();
         btClose.before(inputCant);
-        btClose.before(btCant);
+        btClose.before(btCant);*/
+        
+        var inputCant = $('<div class="container-cant"><input type="number" name="cant" id="cant" placeholder="Quantity" min="1"><button class="writeCant">OK</button></div>');
+        //var btCant = $('');
+        var btClose = $('.close');
+        btClose.siblings().remove();
+        btClose.before(inputCant);
+        //btClose.before(btCant);
         
         
-        btCant.on('click',function(){//dibujo la linea con sus datos en la tabla de factura
-            drawQuantity(product);
+        /*btCant.on('click',function(){//dibujo la linea con sus datos en la tabla de factura
+            drawQuantity($(this),product);
             $(".blur").css('filter', 'blur(0px)')
             $("#modalEdit").css('display', 'none');
+            
+            $('.modal-content').removeClass('modal-apuntar');
+            $('.close').removeClass('apuntar');
+        });*///modificar cantidad en la ventana modal
+        
+        inputCant.find('.writeCant').on('click',function(){//dibujo la linea con sus datos en la tabla de factura
+            drawQuantity($(this),product);
+            $(".blur").css('filter', 'blur(0px)')
+            $("#modalEdit").css('display', 'none');
+            
+            $('.modal-content').removeClass('modal-apuntar');
+            $('.close').removeClass('apuntar');
         });//modificar cantidad en la ventana modal
     }
     
@@ -145,7 +219,7 @@ $(document).ready(function() {
         });
 
         if(!repeat){//si no está el producto en la lista crea su correspondiente fila
-            var totalPrice = quantity*pvp;
+            var totalPrice = parseFloat(quantity*pvp).toFixed(2);
             var tr = $('<tr class="ticket-detail">'+
                             '<td class="quantity">'+ quantity +'</td>'+
                             '<td class="idproduct">'+ id +'</td>'+
@@ -175,18 +249,9 @@ $(document).ready(function() {
         updateTotalPrice();//actualizar precio total del pedido
     }
     
-    function desc_excerpt(description){
-        console.log(description);
-        var newDesc = $.trim(description).substring(0, 12);
-        if (description.length > 12){
-            newDesc += "...";
-        }
-        return newDesc;
-    }
-    
     //poner cantidad de producto que introduces en ventana modal
-    function drawQuantity(product){
-        var quantity = parseInt($('#cant').val());
+    function drawQuantity(bt,product){
+        var quantity = parseInt(bt.siblings('#cant').val());
         var idProducts = $('.ticket-detail').find('.idproduct');
         var id = product.data('id');
         var name = product.data('name');
@@ -202,7 +267,7 @@ $(document).ready(function() {
         });
         
         if(!repeat){
-            var totalPrice = quantity*pvp;
+            var totalPrice = parseFloat(quantity*pvp).toFixed(2);
             var tr = $('<tr class="ticket-detail">'+
                             '<td class="quantity">'+ quantity +'</td>'+
                             '<td class="idproduct">'+ id +'</td>'+
@@ -241,7 +306,7 @@ $(document).ready(function() {
     $.ajax(
         // Hago la llamada
         {
-            url: 'index.php?ruta=family',
+            url: 'family',
             type: 'get',
             dataType: 'json'
         }
@@ -269,7 +334,8 @@ $(document).ready(function() {
 
     function add_event(id, campo){
         campo.on('click', function(e){
-            getAll(id, '', page);
+            cat = id;
+            getAll(cat, '', page, limit);
         });
     }
     
@@ -277,7 +343,8 @@ $(document).ready(function() {
     $(".changeCat:first-child").click(function(){
         $("#searchProductBtn").closest(".searchProduct").find("input[name='search']").val('');
         page = 0;
-        getAll(0, '', page);
+        cat = 0;
+        getAll(cat, '', page, limit);
     });
     
     
@@ -285,7 +352,8 @@ $(document).ready(function() {
     $("#searchProductBtn").click(function(){
        var search = $(this).closest(".searchProduct").find("input[name='search']").val();
        page = 0;
-       getAll(0, search, page);
+       searching = search;
+       getAll(0, searching, page, limit);
     });
     
     
@@ -330,10 +398,20 @@ function updateTotalPrice(){
 }
 
 
+function desc_excerpt(description){
+    console.log(description);
+    var newDesc = $.trim(description).substring(0, 12);
+    if (description.length > 12){
+        newDesc += "...";
+    }
+    return newDesc;
+}
+
+
 
 function addCarrito(idProduct){
     $.ajax({
-        url: 'index.php?accion=addCarro&ruta=carrito',
+        url: 'carrito/addCarro',
         type: 'post',
         dataType: 'json',
         data: {
@@ -352,7 +430,7 @@ function addCarrito(idProduct){
 
 function addCarrito2(idProduct){
     $.ajax({
-        url: 'index.php?accion=addCarro&ruta=carrito',
+        url: 'carrito/addCarro',
         type: 'post',
         dataType: 'json',
         data: {
@@ -361,7 +439,7 @@ function addCarrito2(idProduct){
             idTicket: $('#id_ticket').val()
         }
     }).done(function(json){
-        //$('#id_ticket').val(json.idTicket); Esto reiniciaba el ticket, pero ya esta arreglado
+        $('#id_ticket').val(json.idTicket);
     }).fail(
         function(){
             alert('fallo en el carro');
@@ -371,7 +449,7 @@ function addCarrito2(idProduct){
 
 function subCarrito(idProduct){
     $.ajax({
-        url: 'index.php?accion=subCarro&ruta=carrito',
+        url: 'carrito/subCarro',
         type: 'post',
         dataType: 'json',
         data: {
@@ -379,7 +457,7 @@ function subCarrito(idProduct){
             idTicket: $('#id_ticket').val()
         }
     }).done(function(json){
-        //$('#id_ticket').val(json.idTicket); Esto reiniciaba el ticket, pero ya esta arreglado
+        $('#id_ticket').val(json.idTicket);
     }).fail(
         function(){
             alert('fallo en el carro');
@@ -389,7 +467,7 @@ function subCarrito(idProduct){
 
 function removeCarrito(idProduct){
     $.ajax({
-        url: 'index.php?accion=removeCarro&ruta=carrito',
+        url: 'carrito/removeCarro',
         type: 'post',
         dataType: 'json',
         data: {

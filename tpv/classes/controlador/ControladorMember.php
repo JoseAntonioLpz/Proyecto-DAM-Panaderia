@@ -5,10 +5,10 @@ class ControladorMember extends Controlador{
     function index(){
         if($this->isLogged()){
             
-            $archivo = Util::includeTemplates('templates/home_loged.html');
-            if($this->getUser()->getId() == '1'){
+            //$archivo = Util::includeTemplates('templates/home_loged.html');
+            //if($this->getUser()->getId() == '1'){
                 $archivo = Util::includeTemplates('templates/home_loged_admin.html');
-            }
+            //}
             $this->getModel()->setDato('archivo' , $archivo);
         }else{
             $this->getModel()->setDato('archivo' , Util::includeTemplates('templates/first_page.html'));
@@ -22,16 +22,16 @@ class ControladorMember extends Controlador{
     
     private function renderUserTable($member){
         $plantilla = '<tr>
-                        <th>
+                        <th class="medium">
                             {{id}}
                         </th>
-                        <th>
+                        <th class="medium">
                             {{login}}
                         </th>
-                        <th>
+                        <th class="medium">
                             <div class="actions">
-                                <a class="bt-action edit" href="index.php?accion=edituser&ruta=member&id={{id}}"><i class="fa fa-pencil-square-o"></i></a>
-                                <a class="bt-action remove borrar" href="index.php?accion=removeUser&ruta=member&id={{id}}"><i class="fa fa-times"></i></a>
+                                <a class="bt-action edit" href="member/edituser&id={{id}}">Edit</a>
+                                <a class="bt-action remove borrar" href="member/removeUser&id={{id}}">Remove</a>
                             </div>    
                         </th>
                     </tr>';
@@ -55,15 +55,15 @@ class ControladorMember extends Controlador{
                 foreach($members as $member){
                     $cadena .= self::renderUserTable($member);
                 }
-                $rango = '<nav role="navigation"><div class="pagination"><a href="?&ruta=member&accion=listmember&page=' . $paginate->getFirst() . '">First</a> ';
+                $rango = '<nav role="navigation"><div class="pagination"><a href="member/listmember&page=' . $paginate->getFirst() . '">First</a> ';
                 foreach($paginate->getRange() as $number){
                     if($number == $page){
-                       $rango .= '<a class="active" href="?&ruta=member&accion=listmember&page=' . $number . '">' . $number . '</a> '; 
+                       $rango .= '<a class="active bold" href="member/listmember&page=' . $number . '">' . $number . '</a> '; 
                     }else{
-                        $rango .= '<a href=?&ruta=member&accion=listmember&page=' . $number . '">' . $number . '</a> ';
+                        $rango .= '<a href="member/listmember&page=' . $number . '">' . $number . '</a> ';
                     }
                 }
-                $rango .= '<a href="?&ruta=member&accion=listmember&page=' . $paginate->getLast() . '">Last</a></div></nav>';
+                $rango .= '<a href="member/listmember&page=' . $paginate->getLast() . '">Last</a></div></nav>';
                 $this->getModel()->setDato('listado' , $cadena);
                 $this->getModel()->setDato('rango' , $rango);
             }else{
@@ -117,7 +117,7 @@ class ControladorMember extends Controlador{
             }else{
                 $res = -1;
             }
-            header('Location: index.php?accion=listmember&ruta=member&op=registro&res=' . $res);
+            header('Location: member/listmember&op=registro&res=' . $res);
             exit;
         }else{
             $this->index();
@@ -128,7 +128,7 @@ class ControladorMember extends Controlador{
         $id = Request::read('id');
         if($this->isLogged() && $this->getUser()->getId() === '1'){
             $res = $this->getModel()->removeUser($id);
-            header('Location: index.php?accion=listmember&ruta=member&op=registro&res=' . $res);
+            header('Location: member/listmember&op=registro&res=' . $res);
             exit;
         }else{
             $this->index();
@@ -161,7 +161,7 @@ class ControladorMember extends Controlador{
             }else{
                 $r = $this->getModel()->editUser('NoPass' , $member);
             }
-            header('Location: index.php?accion=listmember&ruta=member&op=editmember&res=' . $r);
+            header('Location: member/listmember&op=editmember&res=' . $r);
         }else{
             $this->index();
         }
